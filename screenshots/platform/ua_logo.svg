@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" width="120" height="60">
+  <rect width="120" height="60" fill="#1a1a1a" rx="8"/>
+  <!-- Under Armour UA interlocking mark approximation -->
+  <!-- U shape -->
+  <path d="M18 12 L18 38 Q18 50 30 50 Q42 50 42 38 L42 30 L34 30 L34 38 Q34 43 30 43 Q26 43 26 38 L26 12 Z" fill="white"/>
+  <!-- A shape overlapping U -->
+  <path d="M36 12 L36 50 L44 50 L44 36 L54 36 L54 50 L62 50 L62 12 L54 12 L54 28 L44 28 L44 12 Z" fill="white"/>
+  <!-- Under Armour wordmark -->
+  <text x="78" y="28" font-family="Arial Black,Helvetica,sans-serif" font-weight="900" font-size="9.5" fill="white" text-anchor="middle" letter-spacing="0.5">UNDER</text>
+  <text x="78" y="42" font-family="Arial Black,Helvetica,sans-serif" font-weight="900" font-size="9.5" fill="white" text-anchor="middle" letter-spacing="0.5">ARMOUR</text>
+</svg>

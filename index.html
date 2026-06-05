@@ -1,0 +1,3357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snowflake Summit 2026 — Day 2 Platform Keynote Summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sf-blue: #29B5E8;
+    --sf-blue-dark: #1a8fb8;
+    --sf-navy: #0B1426;
+    --sf-navy-mid: #112240;
+    --sf-card: #162035;
+    --sf-card-light: #1d2d50;
+    --sf-text: #E8F0FE;
+    --sf-text-muted: #8BA3C7;
+    --sf-accent: #00D4B1;
+    --sf-gold: #FFB547;
+    --sf-pink: #FF6B9D;
+    --sf-green: #4CAF82;
+    --border: rgba(41,181,232,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', 'Inter', sans-serif;
+    background: var(--sf-navy);
+    color: var(--sf-text);
+    line-height: 1.7;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #0B1426 0%, #0D2137 40%, #0A1E3A 100%);
+    padding: 80px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -150px; left: 50%;
+    transform: translateX(-50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(41,181,232,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(41,181,232,0.15);
+    border: 1px solid rgba(41,181,232,0.4);
+    color: var(--sf-blue);
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 0%, var(--sf-blue) 60%, var(--sf-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+  .hero-sub { font-size: 16px; color: var(--sf-text-muted); margin-bottom: 48px; }
+  .hero-stats { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+  .stat-item { text-align: center; }
+  .stat-num { font-family: 'Inter', sans-serif; font-size: 36px; font-weight: 800; color: var(--sf-blue); display: block; }
+  .stat-label { font-size: 12px; color: var(--sf-text-muted); letter-spacing: 0.5px; }
+  .theme-banner {
+    margin-top: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, rgba(0,212,177,0.1), rgba(41,181,232,0.1));
+    border: 1px solid rgba(0,212,177,0.3);
+    border-radius: 12px;
+    padding: 14px 28px;
+  }
+  .theme-icon { font-size: 22px; }
+  .theme-text { font-size: 18px; font-weight: 700; color: var(--sf-accent); }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 64px 0; }
+  .section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::before {
+    content: '';
+    display: block;
+    width: 4px; height: 28px;
+    background: linear-gradient(to bottom, var(--sf-blue), var(--sf-accent));
+    border-radius: 2px;
+  }
+  .section-desc { color: var(--sf-text-muted); font-size: 15px; margin-bottom: 40px; padding-left: 16px; }
+
+  .summary-card {
+    background: var(--sf-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .summary-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--sf-blue), var(--sf-accent));
+  }
+  .summary-card p { font-size: 16px; line-height: 1.9; color: #C9D8F0; margin-bottom: 16px; }
+  .summary-card p:last-child { margin-bottom: 0; }
+  .summary-card strong { color: var(--sf-blue); }
+
+  .learning-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .learning-card {
+    background: var(--sf-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    transition: transform 0.2s, border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .learning-card:hover { transform: translateY(-3px); border-color: rgba(41,181,232,0.5); }
+  .learning-num { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--sf-blue); margin-bottom: 10px; text-transform: uppercase; }
+  .learning-card h3 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 14px; line-height: 1.4; }
+  .learning-quote { background: rgba(41,181,232,0.08); border-left: 3px solid var(--sf-blue); padding: 10px 14px; border-radius: 0 8px 8px 0; font-size: 12.5px; font-style: italic; color: var(--sf-blue); margin-bottom: 14px; line-height: 1.6; }
+  .learning-card ul { list-style: none; padding: 0; }
+  .learning-card ul li { font-size: 13.5px; color: #A8C0E0; padding: 5px 0 5px 18px; position: relative; line-height: 1.6; }
+  .learning-card ul li::before { content: '›'; position: absolute; left: 0; color: var(--sf-accent); font-weight: 700; }
+
+  .acts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 700px) { .acts-grid { grid-template-columns: 1fr; } }
+  .act-card {
+    background: var(--sf-card);
+    border-radius: 14px;
+    padding: 24px 28px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .act-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+  }
+  .act-card.act1::before { background: linear-gradient(90deg, #FF6B9D, #FFB547); }
+  .act-card.act2::before { background: linear-gradient(90deg, #29B5E8, #00D4B1); }
+  .act-card.act3::before { background: linear-gradient(90deg, #4CAF82, #29B5E8); }
+  .act-card.act4::before { background: linear-gradient(90deg, #A78BFA, #29B5E8); }
+  .act-num { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .act-card.act1 .act-num { color: var(--sf-pink); }
+  .act-card.act2 .act-num { color: var(--sf-blue); }
+  .act-card.act3 .act-num { color: var(--sf-green); }
+  .act-card.act4 .act-num { color: #A78BFA; }
+  .act-card h3 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+  .act-card ul { list-style: none; padding: 0; }
+  .act-card ul li { font-size: 12.5px; color: #A8C0E0; padding: 4px 0 4px 16px; position: relative; }
+  .act-card ul li::before { content: '▸'; position: absolute; left: 0; font-size: 10px; top: 6px; }
+  .act-card.act1 ul li::before { color: var(--sf-pink); }
+  .act-card.act2 ul li::before { color: var(--sf-blue); }
+  .act-card.act3 ul li::before { color: var(--sf-green); }
+  .act-card.act4 ul li::before { color: #A78BFA; }
+
+  .rename-banner {
+    background: linear-gradient(135deg, rgba(0,212,177,0.08), rgba(167,139,250,0.08));
+    border: 1px solid rgba(0,212,177,0.3);
+    border-radius: 14px;
+    padding: 24px 28px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+    align-items: center;
+  }
+  .rename-item { display: flex; align-items: center; gap: 12px; }
+  .rename-from { font-size: 13px; color: var(--sf-text-muted); padding: 4px 12px; background: rgba(255,255,255,0.05); border-radius: 6px; }
+  .rename-arrow { font-size: 18px; color: var(--sf-accent); }
+  .rename-to { font-size: 15px; font-weight: 800; color: #fff; padding: 4px 14px; background: rgba(0,212,177,0.15); border: 1px solid rgba(0,212,177,0.4); border-radius: 6px; }
+  .rename-label { font-size: 11px; color: var(--sf-text-muted); margin-right: 4px; }
+
+  .products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 700px) { .products-grid { grid-template-columns: 1fr; } }
+  .product-card {
+    background: var(--sf-card);
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; }
+  .product-card.cowork::before { background: linear-gradient(90deg, #29B5E8, #6EC6F5); }
+  .product-card.coco::before { background: linear-gradient(90deg, #FF6B9D, #FFB547); }
+  .product-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 4px 12px; border-radius: 10px; margin-bottom: 14px; }
+  .cowork .product-tag { background: rgba(41,181,232,0.15); color: var(--sf-blue); }
+  .coco .product-tag { background: rgba(255,107,157,0.15); color: var(--sf-pink); }
+  .product-card h3 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+  .product-card .subtitle { font-size: 13px; color: var(--sf-text-muted); margin-bottom: 20px; }
+  .product-quote { background: rgba(255,255,255,0.04); border-left: 3px solid rgba(255,255,255,0.2); padding: 10px 14px; border-radius: 0 8px 8px 0; font-size: 12.5px; font-style: italic; color: #C9D8F0; margin-bottom: 20px; }
+  .metric-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
+  .metric-chip { background: rgba(41,181,232,0.1); border: 1px solid rgba(41,181,232,0.25); border-radius: 8px; padding: 10px 16px; text-align: center; }
+  .metric-chip .val { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 800; color: var(--sf-blue); display: block; }
+  .metric-chip .desc { font-size: 11px; color: var(--sf-text-muted); }
+  .coco .metric-chip { background: rgba(255,107,157,0.1); border-color: rgba(255,107,157,0.25); }
+  .coco .metric-chip .val { color: var(--sf-pink); }
+
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--sf-blue), var(--sf-accent), transparent); }
+  .timeline-item { position: relative; margin-bottom: 48px; }
+  .timeline-dot { position: absolute; left: -27px; top: 18px; width: 14px; height: 14px; border-radius: 50%; background: var(--sf-blue); border: 2px solid var(--sf-navy); box-shadow: 0 0 0 3px rgba(41,181,232,0.25); }
+  .timeline-card { background: var(--sf-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 32px; position: relative; overflow: hidden; }
+  .timeline-card::after { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(to bottom, var(--sf-blue), var(--sf-accent)); border-radius: 2px 0 0 2px; }
+  .speaker-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .speaker-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .speaker-info .name { font-size: 15px; font-weight: 700; color: #fff; }
+  .speaker-info .role { font-size: 12px; color: var(--sf-text-muted); }
+  .timeline-card h3 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .point-list { list-style: none; padding: 0; margin-bottom: 16px; }
+  .point-list li { padding: 7px 0 7px 22px; position: relative; font-size: 14px; color: #A8C0E0; line-height: 1.6; }
+  .point-list li::before { content: '▸'; position: absolute; left: 0; color: var(--sf-blue); font-size: 12px; top: 8px; }
+  .point-list li strong { color: #E0EEFF; }
+  .highlight-quote { background: linear-gradient(135deg, rgba(41,181,232,0.08), rgba(0,212,177,0.05)); border: 1px solid rgba(41,181,232,0.2); border-radius: 10px; padding: 16px 20px; font-size: 13.5px; font-style: italic; color: #C9D8F0; margin: 16px 0; position: relative; }
+  .highlight-quote::before { content: '"'; font-size: 48px; color: rgba(41,181,232,0.2); position: absolute; top: -8px; left: 12px; font-family: Georgia, serif; line-height: 1; }
+  .highlight-quote .quote-author { display: block; margin-top: 8px; font-style: normal; font-size: 12px; font-weight: 600; color: var(--sf-blue); }
+  .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  @media (max-width: 600px) { .results-grid { grid-template-columns: 1fr; } }
+  .result-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 14px 16px; }
+  .result-card .company { font-size: 12px; font-weight: 700; color: var(--sf-gold); margin-bottom: 4px; }
+  .result-card .detail { font-size: 13px; color: #A8C0E0; line-height: 1.5; }
+  .result-card .detail strong { color: var(--sf-accent); }
+  .app-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .app-chip { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 5px 12px; font-size: 12px; color: #C9D8F0; }
+  .demo-steps { counter-reset: steps; list-style: none; padding: 0; margin-top: 16px; }
+  .demo-steps li { counter-increment: steps; padding: 12px 14px 12px 48px; position: relative; background: rgba(255,255,255,0.02); border-radius: 8px; margin-bottom: 8px; font-size: 13.5px; color: #A8C0E0; border: 1px solid rgba(255,255,255,0.05); }
+  .demo-steps li::before { content: counter(steps); position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; border-radius: 50%; background: var(--sf-blue); color: #000; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .scene-capture { width: 100%; border-radius: 12px; margin: 22px 0 6px; border: 1px solid rgba(41,181,232,0.25); display: block; box-shadow: 0 4px 24px rgba(0,0,0,0.4); }
+  .scene-caption { text-align: center; font-size: 11.5px; color: var(--sf-text-muted); margin-bottom: 20px; font-style: italic; letter-spacing: 0.2px; }
+  .video-embed-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; margin: 22px 0 6px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,107,157,0.35); box-shadow: 0 4px 24px rgba(0,0,0,0.5); background: #000; }
+  .video-embed-wrapper video { width: 100%; height: 100%; }
+  .video-timestamp-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,107,157,0.12); border: 1px solid rgba(255,107,157,0.3); border-radius: 6px; padding: 4px 12px; font-size: 12px; color: var(--sf-pink); font-family: 'Inter', monospace; font-weight: 600; margin-bottom: 12px; cursor: default; }
+
+  .status-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .status-chip { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 10px; letter-spacing: 0.3px; }
+  .status-ga { background: rgba(76,175,130,0.2); color: var(--sf-green); }
+  .status-pp { background: rgba(41,181,232,0.15); color: var(--sf-blue); }
+  .status-priv { background: rgba(255,181,71,0.15); color: var(--sf-gold); }
+  .status-new { background: rgba(255,107,157,0.15); color: var(--sf-pink); }
+
+  .customer-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(41,181,232,0.04));
+    border: 1px solid rgba(41,181,232,0.2);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-top: 20px;
+  }
+  .customer-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+  .customer-logo { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .customer-name { font-size: 16px; font-weight: 700; color: #fff; }
+  .customer-person { font-size: 12px; color: var(--sf-text-muted); }
+  .customer-card .point-list { margin-bottom: 0; }
+
+  .actions-section { background: linear-gradient(135deg, var(--sf-navy-mid), var(--sf-navy)); border-top: 1px solid var(--border); }
+  .action-list { display: flex; flex-direction: column; gap: 12px; }
+  .action-item { display: flex; align-items: flex-start; gap: 16px; background: var(--sf-card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px; transition: border-color 0.2s; }
+  .action-item:hover { border-color: rgba(41,181,232,0.4); }
+  .priority-badge { flex-shrink: 0; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 6px; letter-spacing: 0.5px; margin-top: 1px; }
+  .priority-high { background: rgba(76,175,130,0.2); color: var(--sf-green); }
+  .priority-mid { background: rgba(41,181,232,0.15); color: var(--sf-blue); }
+  .priority-low { background: rgba(167,139,250,0.15); color: #A78BFA; }
+  .action-text { font-size: 14.5px; color: #C9D8F0; line-height: 1.6; }
+
+  footer { text-align: center; padding: 32px; border-top: 1px solid var(--border); color: var(--sf-text-muted); font-size: 12px; }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 48px 20px 40px; }
+    .hero-stats { gap: 28px; }
+    .stat-num { font-size: 28px; }
+    .container { padding: 0 16px; }
+    section { padding: 48px 0; }
+    .timeline { padding-left: 20px; }
+    .timeline-card { padding: 20px; }
+  }
+::cue {
+  font-size: 16px;
+  font-family: 'Noto Sans KR', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  background: rgba(0,0,0,0.65);
+  color: #ffffff;
+  line-height: 1.6;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Snowflake Summit 2026 · Day 2 Platform Keynote</div>
+  <h1>Platform Keynote Summary</h1>
+  <p class="hero-sub">Created: June 2, 2026 | Based on English transcript</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">4</span>
+      <span class="stat-label">Act Structure</span>
+    </div>
+
+    <div class="stat-item">
+      <span class="stat-num">30+</span>
+      <span class="stat-label">Product Announcements</span>
+    </div>
+  </div>
+  <div class="theme-banner">
+    <span class="theme-icon">✨</span>
+    <span class="theme-text">Rethink What Is Possible</span>
+  </div>
+</div>
+
+<div style="max-width:1100px; margin:0 auto; padding:0 24px 32px;">
+  <p style="margin-top:24px; font-size:13px; color:var(--sf-text-muted);">
+    Speakers: <strong style="color:var(--sf-blue);">Benoit Dageville</strong> (Co-founder &amp; Chief Architect) &middot;
+    <strong style="color:var(--sf-blue);">Christian Kleinerman</strong> (EVP, Product) &middot;
+    <strong style="color:var(--sf-blue);">Dash Desai</strong> (Live Demos) /
+    Guests: <strong style="color:var(--sf-gold);">Thomson Reuters</strong> &middot;
+    <strong style="color:var(--sf-gold);">Under Armour</strong> &middot;
+    <strong style="color:var(--sf-gold);">Samsung</strong>
+  </p>
+</div>
+
+<div class="divider"></div>
+
+<!-- SUMMARY -->
+<section>
+  <div class="container">
+    <div class="section-title">Overview</div>
+    <p class="section-desc">Catch up on the Platform Keynote in 5 minutes</p>
+    <div class="summary-card">
+      <p>
+        The Day 2 Platform Keynote opened with Snowflake Co-founder <strong>Benoit Dageville</strong> reflecting on 10 years since founding, followed by <strong>EVP of Product Christian Kleinerman</strong> delivering 30+ product announcements over 90 minutes.
+        The session kicked off with the official renames: <strong>Cortex Code → Snowflake CoCo</strong> and <strong>Snowflake Intelligence → Snowflake CoWork</strong> — which drew a strong reaction from the crowd.
+      </p>
+      <p>
+        The keynote followed a 4-act structure: <strong>Ease of Use / Trust / Open &amp; Interoperable / CoWork for Everyone</strong>.
+        Key announcements included <strong>CoCo Desktop GA</strong>, Kafka-compatible streaming with <strong>Snowflake Data Stream</strong>,
+        <strong>Cortex Sense</strong> for dramatically improved agent accuracy, expanded <strong>zero-copy integrations</strong> with SAP, Workday and others,
+        and <strong>Adaptive Compute GA</strong> (~2x faster).
+      </p>
+      <p>
+        <strong>Thomson Reuters</strong> (governance), <strong>Under Armour</strong> (interoperability), and <strong>Samsung</strong> (CoWork) each took the stage to share how they're running AI in production. The closing message was
+        <em>"Snowflake takes you from the era of 'can we' to 'shall we?'"</em>
+      </p>
+    </div>
+  </div>
+
+<div class="divider"></div>
+
+<!-- KEY TAKEAWAYS -->
+<section>
+  <div class="container">
+    <div class="section-title">Key Takeaways</div>
+    <p class="section-desc">4 business takeaways from the Platform Keynote</p>
+    <div class="learning-grid">
+      <div class="learning-card">
+        <div class="learning-num">Point 01</div>
+        <h3>Eliminating Friction — CoCo Is Changing What Development Looks Like</h3>
+        <div class="learning-quote">"We are in the friction elimination business."</div>
+        <ul>
+          <li>CoCo Desktop is now GA: build, fix, and deploy pipelines in natural language</li>
+          <li>Spark RDD → Snowflake migration achieved <strong>5x performance improvement</strong></li>
+          <li>Destructive operations always require human approval — AI that doesn't go rogue</li>
+          <li>Available in 3 forms — Desktop, Snowsight, and CLI — use whichever fits your workflow</li>
+        </ul>
+      </div>
+      <div class="learning-card">
+        <div class="learning-num">Point 02</div>
+        <h3>Governance Is Not an AI Blocker — It's an Accelerant</h3>
+        <div class="learning-quote">"Governance is an enabler, not a constraint." — Thomson Reuters</div>
+        <ul>
+          <li>Just say "protect all PII" and policies are automatically generated and applied</li>
+          <li>Agent Identity makes every agent's actions visible and controllable</li>
+          <li>Data Movement Policy prevents data exfiltration at the system level</li>
+          <li>Thomson Reuters: CoCounsel is used by <strong>over 1 million professionals</strong> in production</li>
+        </ul>
+      </div>
+      <div class="learning-card">
+        <div class="learning-num">Point 03</div>
+        <h3>An Open, Vendor-Lock-In-Free Data Foundation Is Now Real</h3>
+        <div class="learning-quote">"Nobody feels locked in with Snowflake."</div>
+        <ul>
+          <li>Broadest Iceberg V3 implementation. Bidirectional catalog interoperability with other engines</li>
+          <li>Zero-copy connectivity with SAP, Workday, IBM, and AVEVA (SAP now GA)</li>
+          <li>Open Sharing: deliver data directly to non-Snowflake users via Iceberg REST</li>
+          <li>Multi-party Collaboration GA: multiple organizations collaborate in a single secure environment</li>
+        </ul>
+      </div>
+      <div class="learning-card">
+        <div class="learning-num">Point 04</div>
+        <h3>The Data Team Bottleneck Is Finally Over</h3>
+        <div class="learning-quote">"Samsung: 1,000 executives using the agent — they are not data scientists."</div>
+        <ul>
+          <li>CoWork gives everyone their own personal data analyst</li>
+          <li>Cortex Sense automatically improves agent accuracy from <strong>24% → 83%</strong></li>
+          <li>Samsung: 1,000 executives using agents daily — none of them are data scientists</li>
+          <li>Natoma acquisition connects CoCo/CoWork to 100+ business systems seamlessly</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</section>
+
+<div class="divider"></div>
+
+<!-- RENAME ANNOUNCEMENT -->
+<section>
+  <div class="container">
+    <div class="section-title">Major Announcement: Official Renames</div>
+    <p class="section-desc">Officially renamed at Summit 2026</p>
+    <div class="rename-banner">
+      <div class="rename-item">
+        <span class="rename-label">Formerly</span>
+        <span class="rename-from">Cortex Code</span>
+        <span class="rename-arrow">→</span>
+        <span class="rename-to">Snowflake CoCo</span>
+      </div>
+      <div style="width:1px; background:rgba(255,255,255,0.1); align-self:stretch;"></div>
+      <div class="rename-item">
+        <span class="rename-label">Formerly</span>
+        <span class="rename-from">Snowflake Intelligence</span>
+        <span class="rename-arrow">→</span>
+        <span class="rename-to">Snowflake CoWork</span>
+      </div>
+    </div>
+    <p style="font-size:13px; color:var(--sf-text-muted); padding-left:4px;">
+      "From here on, no more Cortex Code. It is officially Snowflake CoCo." — Christian Kleinerman<br>
+      "The scope of Snowflake Intelligence is so much broader than when we started. It's changing how we work."
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 4 ACTS OVERVIEW -->
+<section>
+  <div class="container">
+    <div class="section-title">4-Act Structure Overview</div>
+    <p class="section-desc">The four themes running through today's announcements</p>
+    <div class="acts-grid">
+      <div class="act-card act1">
+        <div class="act-num">Act 1</div>
+        <h3>Ease of Use — Eliminating Friction</h3>
+        <ul>
+          <li>CoCo Desktop <strong>GA</strong></li>
+          <li>Cloud Agents / Skill Catalog</li>
+          <li>Snap and Ask</li>
+          <li>Snowflake Data Stream（Private Preview）</li>
+          <li>Cortex Function Studio / Agentic Search</li>
+          <li>Snowflake App Runtime（React/Node.js）</li>
+        </ul>
+      </div>
+      <div class="act-card act2">
+        <div class="act-num">Act 2</div>
+        <h3>Trust — Governance &amp; Security</h3>
+        <ul>
+          <li>Intent-driven Governance</li>
+          <li>Agent Identity / Data Movement Policies</li>
+          <li>Multi-party Approvals</li>
+          <li>Horizon Context (NEW)</li>
+          <li>Interactive Compiler (40x faster)</li>
+          <li>Next-gen account replication (20x faster)</li>
+        </ul>
+      </div>
+      <div class="act-card act3">
+        <div class="act-num">Act 3</div>
+        <h3>Open &amp; Interoperable — No Silos</h3>
+        <ul>
+          <li>Broadest Iceberg V3 implementation + participating in V4 spec</li>
+          <li>Snowflake Managed Iceberg Storage <strong>GA</strong></li>
+          <li>Data Re-sharing <strong>GA</strong></li>
+          <li>Open Sharing（Iceberg REST）</li>
+          <li>Multi-party Collaboration <strong>GA</strong></li>
+          <li>SAP zero-copy integration <strong>GA</strong></li>
+        </ul>
+      </div>
+      <div class="act-card act4">
+        <div class="act-num">Act 4</div>
+        <h3>CoWork for Everyone — The Control Plane for All</h3>
+        <ul>
+          <li>Personal Work Engine (no more agent picker)</li>
+          <li>User Memory / Scheduled Tasks</li>
+          <li>Next-gen artifacts (live data)</li>
+          <li>Cortex Sense (accuracy 24% → <strong>83%</strong>)</li>
+          <li>Natoma acquisition: 100+ business system connections</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRODUCTS DEEP DIVE -->
+<section>
+  <div class="container">
+    <div class="section-title">Key Products</div>
+    <p class="section-desc">CoCo and CoWork — the control plane for every organization</p>
+    <div class="products-grid">
+      <div class="product-card coco">
+        <div class="product-tag">For Builders</div>
+        <h3>Snowflake CoCo</h3>
+        <p class="subtitle">AI Coding Agent (formerly Cortex Code)</p>
+        <div class="product-quote">"Any sufficiently advanced technology is indistinguishable from magic."</div>
+        <div class="metric-row">
+          <div class="metric-chip">
+            <span class="val">GA Today</span>
+            <span class="desc">CoCo Desktop officially released</span>
+          </div>
+          <div class="metric-chip">
+            <span class="val">5x faster</span>
+            <span class="desc">Spark → Snowflake migration</span>
+          </div>
+          <div class="metric-chip">
+            <span class="val">3 forms</span>
+            <span class="desc">Desktop / Snowsight / CLI</span>
+          </div>
+        </div>
+        <div class="status-row" style="margin-top:18px;">
+          <span class="status-chip status-ga">CoCo Desktop GA</span>
+          <span class="status-chip status-ga">Cloud Agents (nearly GA)</span>
+          <span class="status-chip status-pp">Skill Catalog</span>
+          <span class="status-chip status-pp">Snap and Ask</span>
+        </div>
+        <p style="font-size:13px; color:#A8C0E0; margin-top:14px;">Also available in Excel, VS Code, and GitHub Marketplace. Snowsight &amp; CLI sandbox support. Scheduled execution and Async API compatible.</p>
+      </div>
+      <div class="product-card cowork">
+        <div class="product-tag">For Everyone</div>
+        <h3>Snowflake CoWork</h3>
+        <p class="subtitle">Personal AI Work Engine (formerly Snowflake Intelligence)</p>
+        <div class="product-quote">"Each person has its own pit crew. Each one has its own Jarvis."</div>
+        <div class="metric-row">
+          <div class="metric-chip">
+            <span class="val">83%</span>
+            <span class="desc">Accuracy with Cortex Sense</span>
+          </div>
+          <div class="metric-chip">
+            <span class="val">1,000</span>
+            <span class="desc">Samsung executives using it</span>
+          </div>
+        </div>
+        <div class="status-row" style="margin-top:18px;">
+          <span class="status-chip status-ga">Deep Research GA</span>
+          <span class="status-chip status-ga">Mobile App GA</span>
+          <span class="status-chip status-new">Personal Work Engine</span>
+          <span class="status-chip status-new">Cortex Sense NEW</span>
+        </div>
+        <p style="font-size:13px; color:#A8C0E0; margin-top:14px;">For everyone from CEO to frontline staff. User Memory learns your patterns over time. Artifact creation, sharing, and MCP integration all in one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTIONS TIMELINE -->
+<section>
+  <div class="container">
+    <div class="section-title">Section Breakdown</div>
+    <p class="section-desc">Announcements organized in chronological order</p>
+    <div class="timeline">
+
+      <!-- Benoit -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="speaker-row">
+            <div class="speaker-avatar" style="background:linear-gradient(135deg,#29B5E8,#00D4B1);">🏗️</div>
+            <div class="speaker-info">
+              <div class="name">Benoit Dageville</div>
+              <div class="role">Co-founder &amp; Chief Architect — Snowflake</div>
+            </div>
+          </div>
+          <h3>Opening: The Platform Philosophy (~23:27)</h3>
+          <img src="screenshots/platform/01_benoit_opening.jpg" alt="Benoit Dageville opening" class="scene-capture">
+          <p class="scene-caption">Benoit Dageville (Co-founder &amp; Chief Architect) — sharing the founding vision of "eliminating data silos"</p>
+          <p style="font-size:13.5px; color:#A8C0E0; margin-bottom:14px;">
+            After CoCo collaborated with live-coding DJ "R. Tyler" for an opening performance, Benoit Dageville reflected on Snowflake's founding origins and the journey to where it stands today.
+          </p>
+          <ul class="point-list">
+            <li>The founding vision from 2012 — <strong>eliminating data silos</strong> — is unchanged. In 2026, the original SIGMOD paper received the <strong>Test of Time Award</strong></li>
+            <li>Expanded from structured + semi-structured → Iceberg → unstructured data. Core principles of compute separation and zero maintenance still hold</li>
+            <li>Two requirements for the agentic era: <strong>the world's best data foundation</strong> + <strong>integrated AI and data architecture</strong>. Separation recreates silos</li>
+          </ul>
+          <div class="highlight-quote">
+            "Your data makes your AI platform incredibly smart, which in turn makes your entire data platform faster, simpler, and infinitely productive."
+            <span class="quote-author">— Benoit Dageville</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Act 1 -->
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--sf-pink);"></div>
+        <div class="timeline-card">
+          <div class="speaker-row">
+            <div class="speaker-avatar" style="background:linear-gradient(135deg,#FF6B9D,#FFB547);">⚡</div>
+            <div class="speaker-info">
+              <div class="name">Christian Kleinerman</div>
+              <div class="role">EVP of Product — Snowflake</div>
+            </div>
+          </div>
+          <h3>Act 1: Ease of Use — Eliminating Friction (23:27–50:00)</h3>
+          <img src="screenshots/platform/03_data_stream.jpg" alt="Snowflake Data Stream announcement" class="scene-capture">
+          <p class="scene-caption">Snowflake Data Stream announced — fully managed Kafka Wire-compatible streaming (~33:20)</p>
+          <p style="font-size:13px; color:var(--sf-pink); font-weight:700; margin-bottom:12px;">"We are in the friction elimination business."</p>
+          <ul class="point-list">
+            <li><strong>CoCo Desktop GA</strong>: desktop app delivering CLI-equivalent power through UI. Plan → Build → Deploy in one flow</li>
+            <li><strong>Cloud Agents (nearly GA)</strong>: sandboxes added to Snowsight and CLI. Scheduled execution, Async API, and Skill Catalog support</li>
+            <li><strong>Snap and Ask</strong>: snap any area of your screen and ask CoCo questions with full visual context</li>
+            <li><strong>Snowflake Data Stream</strong> (Private Preview coming soon): fully managed Kafka Wire-compatible streaming. Zero-copy, sub-second latency</li>
+            <li><strong>AIM (AI-powered Migrations)</strong>: Teradata virtualization support (run Teradata SQL as-is on Snowflake). Spark RDD → Snowflake at 5x performance improvement</li>
+            <li><strong>Cortex Function Studio</strong> (Public Preview): build, evaluate, and roll out custom AI functions on your own terms</li>
+            <li><strong>SpaceX's Grok model</strong> added to Cortex (Private Preview)</li>
+            <li><strong>Agentic Search</strong> (Public Preview): precise analytical queries on unstructured data — not RAG, but structured conversion → SQL answers</li>
+            <li><strong>Code Bundles</strong> (Public Preview): deploy and run Python files directly in Snowflake — no wrappers needed</li>
+            <li><strong>Cortex Training</strong>: fully managed fine-tuning and reinforcement learning experience</li>
+            <li><strong>Streaming Feature Serving GA</strong>: real-time feature delivery with tens-of-milliseconds latency</li>
+            <li><strong>Snowflake App Runtime</strong> (Public Preview): host full Node.js/React apps inside Snowflake. Single `snow app deploy` command</li>
+            <li><strong>Streamlit in Snowflake GA</strong>: workspace, Git integration, container execution. 1.7M monthly active developers</li>
+          </ul>
+          <h4 style="color:var(--sf-blue); font-size:14px; margin:16px 0 10px;">Demo 1: Snow Music (Dash Desai)</h4>
+          <span class="video-timestamp-badge">🎬 CoCo Desktop Demo &nbsp;44:08〜49:51 · ~6 min</span>
+          <div class="video-embed-wrapper" style="position:relative;">
+            <div id="demo-step-badge" style="
+              display:none;
+              position:absolute;
+              top:10px;
+              right:12px;
+              background:rgba(0,0,0,0.72);
+              color:#fff;
+              font-size:11px;
+              font-weight:700;
+              padding:4px 10px;
+              border-radius:20px;
+              pointer-events:none;
+              z-index:10;
+              letter-spacing:0.03em;
+              line-height:1.5;
+              text-align:center;
+              max-width:200px;
+              backdrop-filter:blur(4px);
+            "></div>
+            <video id="demo-video" src="screenshots/platform/coco_desktop_demo.webm" controls preload="metadata" style="width:100%;"></video>
+          </div>
+          <div style="margin-top:10px;">
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px;">
+              <span style="font-size:12px;color:#A8C0E0;font-weight:600;">자막:</span>
+              <button onclick="setDemoTrack('ja')" id="btn-ja" style="
+                font-size:11px;padding:3px 12px;border-radius:12px;border:1px solid #555;
+                background:transparent;color:#A8C0E0;cursor:pointer;font-weight:600;">🇯🇵 Japanese</button>
+              <button onclick="setDemoTrack('en')" id="btn-en" style="
+                font-size:11px;padding:3px 12px;border-radius:12px;border:1px solid #29B5E8;
+                background:#29B5E8;color:#fff;cursor:pointer;font-weight:700;">🇺🇸 English</button>
+              <button onclick="setDemoTrack('off')" id="btn-off" style="
+                font-size:11px;padding:3px 12px;border-radius:12px;border:1px solid #555;
+                background:transparent;color:#A8C0E0;cursor:pointer;font-weight:600;">✕ OFF</button>
+            </div>
+          </div>
+          <script>
+          (function(){
+            var VTT_JA = `WEBVTT
+
+00:00:02.300 --> 00:00:03.700
+Dash よろしく。
+
+00:00:03.760 --> 00:00:06.120
+ありがとう、Christian！
+
+00:00:08.840 --> 00:00:12.380
+ここに来てくれてありがとう。ライブデモを楽しみにしていますか？
+
+00:00:13.860 --> 00:00:14.780
+行きましょう！
+
+00:00:15.780 --> 00:00:19.500
+今日のデモは
+
+00:00:19.580 --> 00:00:22.020
+「Snow Music」という架空企業を舞台に展開します。
+
+00:00:22.360 --> 00:00:25.620
+ツアー運営と高トラフィックアプリを扱います。
+
+00:00:25.720 --> 00:00:29.500
+最初のデモは
+
+00:00:29.620 --> 00:00:33.160
+データエンジニアとアプリ開発者向けです。
+
+00:00:33.660 --> 00:00:37.240
+もっと楽しみになりましたか？行きましょう！
+
+00:00:37.340 --> 00:00:37.680
+さあ！
+
+00:00:39.100 --> 00:00:40.920
+では始めましょう。
+
+00:00:42.379 --> 00:00:45.900
+今ご覧いただいているのが CoCo Desktop
+
+00:00:46.080 --> 00:00:49.780
+アプリです。このボタンでアプリを構築、
+
+00:00:49.920 --> 00:00:53.740
+スキルを作成、あるいは
+
+00:00:53.780 --> 00:00:57.700
+カスタムプロンプトでプランを作成できます。
+
+00:00:57.760 --> 00:01:01.540
+時間の都合上、アプリは事前に構築済みです。
+
+00:01:01.660 --> 00:01:04.700
+デプロイ済みアプリを見てみましょう。
+
+00:01:04.820 --> 00:01:07.100
+CoCo が構築したアプリです。
+
+00:01:08.320 --> 00:01:11.160
+見てください。4枚の
+
+00:01:11.920 --> 00:01:15.340
+カードが上部にあります。これはライブストリーミング
+
+00:01:15.500 --> 00:01:18.860
+アプリです。データが流れ込んでいます。
+
+00:01:19.400 --> 00:01:23.000
+CoCo にこのデータ
+
+00:01:23.120 --> 00:01:27.090
+パイプラインを修正させます。右側のパネルを開いて
+
+00:01:27.120 --> 00:01:30.780
+プロンプトを貼り付けます。
+
+00:01:31.320 --> 00:01:35.040
+「何が問題か確認して
+
+00:01:35.100 --> 00:01:38.720
+自然言語で修正してほしい」
+
+00:01:38.820 --> 00:01:42.380
+それだけです。データが
+
+00:01:42.400 --> 00:01:46.220
+流れ続ける中、CoCo が問題の特定を
+
+00:01:46.320 --> 00:01:49.580
+進めています。既存の
+
+00:01:49.660 --> 00:01:53.270
+タスクを調べ、一時停止中か、カラム欠損がないか確認します。
+
+00:01:53.900 --> 00:01:56.680
+プロンプトは非常に汎用的です。
+
+00:01:57.180 --> 00:02:00.920
+「CoCo が料理中」、今思いついたフレーズです。
+
+00:02:01.320 --> 00:02:05.110
+CoCo が処理中の間、データのソースを見てみましょう。
+
+00:02:05.240 --> 00:02:09.200
+Data Stream でライブストリーミング中、
+
+00:02:09.600 --> 00:02:12.560
+Iceberg テーブルにも挿入されています。
+
+00:02:13.120 --> 00:02:16.280
+そのデータは
+
+00:02:16.800 --> 00:02:20.620
+Salesforce ゼロコピーデータ
+
+00:02:20.680 --> 00:02:23.940
+コネクタで結合されています。これが今リアルタイムで起きています。
+
+00:02:24.280 --> 00:02:27.980
+右側を見ると、
+
+00:02:28.020 --> 00:02:30.720
+タスクの一つで device_type が欠損していることを特定しました。
+
+00:02:31.040 --> 00:02:34.700
+タスクをすでに修正し、他に
+
+00:02:34.900 --> 00:02:37.480
+できることがないか検証しています。
+
+00:02:37.960 --> 00:02:39.940
+では他のことも見てみましょう。
+
+00:02:40.860 --> 00:02:44.720
+下部に
+
+00:02:44.800 --> 00:02:48.720
+モデル選択のセレクターがあります。
+
+00:02:48.940 --> 00:02:52.760
+「auto」を選択していますが、
+
+00:02:52.820 --> 00:02:56.480
+ユースケースに応じてドロップダウンから選択できます。
+
+00:02:57.120 --> 00:02:59.640
+CoCo が何を処理しているか見てみましょう。
+
+00:02:59.700 --> 00:03:02.700
+コマンドの実行確認を求めています。
+
+00:03:02.740 --> 00:03:06.600
+破壊的なコマンドは
+
+00:03:06.640 --> 00:03:09.880
+自動実行されません。ユーザーの
+
+00:03:09.920 --> 00:03:12.420
+許可が必要です。
+
+00:03:12.840 --> 00:03:15.260
+他に何を実行するか見てみましょう。
+
+00:03:16.060 --> 00:03:20.040
+CoCo が処理中の間、データのソースをお見せします。
+
+00:03:20.080 --> 00:03:23.800
+これは Salesforce ゼロコピーコネクタから
+
+00:03:23.840 --> 00:03:26.900
+ストリーミングするダイレクトシェアです。
+
+00:03:27.700 --> 00:03:31.120
+リアルタイムで結合されているテーブルです：ファン
+
+00:03:31.160 --> 00:03:34.600
+プロファイルとチケット履歴。これらは
+
+00:03:35.000 --> 00:03:37.280
+Salesforce ゼロコピーデータコネクタから取得しています。
+
+00:03:37.820 --> 00:03:41.180
+タスクが正常に実行されました。
+
+00:03:41.420 --> 00:03:44.360
+問題を診断・修正できたと思います。
+
+00:03:44.400 --> 00:03:47.820
+カードがグリーンに変わるはずです。
+
+00:03:48.380 --> 00:03:52.300
+もしそうでなければ、データパイプラインを
+
+00:03:52.660 --> 00:03:56.600
+確認します。クリックして
+
+00:03:56.640 --> 00:04:00.180
+CoCo が追加でやることを見てみましょう。
+
+00:04:00.620 --> 00:04:00.860
+さて、
+
+00:04:02.300 --> 00:04:06.160
+Christian がクールな機能について
+
+00:04:06.240 --> 00:04:09.600
+「Snap and Ask」と言っていました。次にお見せします。
+
+00:04:09.620 --> 00:04:13.610
+CoCo が処理中の間、デスクトップアプリで
+
+00:04:13.640 --> 00:04:17.420
+構築したプランを見てみましょう。
+
+00:04:18.500 --> 00:04:21.820
+すべてのステップが CoCo Desktop の
+
+00:04:21.880 --> 00:04:25.740
+プランとして表示されています。編集したり、
+
+00:04:25.780 --> 00:04:29.580
+「Build」をクリックすると
+
+00:04:29.700 --> 00:04:33.240
+アプリの構築が始まります。Snowsight で見たのと
+
+00:04:33.300 --> 00:04:34.140
+同じです。
+
+00:04:35.160 --> 00:04:37.908
+Snowsight に戻りましょう。
+
+00:04:38.248 --> 00:04:41.248
+最小行数の特定。データロスなし。
+
+00:04:41.568 --> 00:04:45.268
+リフレッシュして結果を
+
+00:04:45.328 --> 00:04:45.928
+確認してみましょう。
+
+00:04:46.728 --> 00:04:46.968
+さて、
+
+00:04:50.208 --> 00:04:53.908
+AI と Dash Desai には2つの共通点があります。
+
+00:04:53.948 --> 00:04:57.888
+私の苗字に「AI」が入っています。
+
+00:04:57.908 --> 00:05:01.748
+そして AI と私は両方間違えることがあります。
+
+00:05:02.188 --> 00:05:02.428
+さて、
+
+00:05:03.448 --> 00:05:05.348
+本当にクールなものをお見せします。
+
+00:05:05.768 --> 00:05:08.988
+「カードを今すぐ修正してください」と
+
+00:05:10.328 --> 00:05:11.708
+入力します。
+
+00:05:12.708 --> 00:05:13.388
+カードを
+
+00:05:16.288 --> 00:05:16.588
+今すぐ修正してください。
+
+00:05:18.088 --> 00:05:21.418
+CoCo が処理中の間、今お見せしたことをまとめます。
+
+00:05:21.768 --> 00:05:24.848
+アプリ開発者とデータエンジニアは
+
+00:05:24.908 --> 00:05:28.388
+Snowsight でも
+
+00:05:28.448 --> 00:05:31.697
+CoCo Desktop でも使えます。ライブ
+
+00:05:32.028 --> 00:05:35.788
+ストリーミングイベントが流れ込み、
+
+00:05:35.868 --> 00:05:39.308
+Salesforce データと結合。そして
+
+00:05:39.628 --> 00:05:43.468
+CoCo はユーザーの許可なし
+
+00:05:43.548 --> 00:05:46.898
+に破壊的なコマンドを実行しません。以上が私の時間です。
+
+00:05:46.968 --> 00:05:47.708
+Christian さん、お返しします。
+`;
+            var VTT_EN = `WEBVTT
+
+00:00:02.300 --> 00:00:03.700
+we just talked about. Take it away, Dash.
+
+00:00:03.760 --> 00:00:06.120
+Awesome. Thank you, Christian.
+
+00:00:08.840 --> 00:00:12.380
+Thank you so much for being here. Who's excited to see some live demos?
+
+00:00:13.860 --> 00:00:14.780
+Come on, let's go.
+
+00:00:15.780 --> 00:00:19.500
+Awesome. So our demos today will focus on a
+
+00:00:19.580 --> 00:00:22.020
+fictional company called Snow Music.
+
+00:00:22.360 --> 00:00:25.620
+Now they operate live tour operations and also
+
+00:00:25.720 --> 00:00:29.500
+high-traffic applications. Now my first demo
+
+00:00:29.620 --> 00:00:33.160
+is going to focus on data engineers and app developers.
+
+00:00:33.660 --> 00:00:37.240
+Who is excited even more now? Let's go.
+
+00:00:37.340 --> 00:00:37.680
+Come on.
+
+00:00:39.100 --> 00:00:40.920
+Awesome. So let's get started.
+
+00:00:42.379 --> 00:00:45.900
+So what you see here is Coco desktop
+
+00:00:46.080 --> 00:00:49.780
+application. Here, I can click on this button to build an
+
+00:00:49.920 --> 00:00:53.740
+app, create a skill, or I can also actually type a
+
+00:00:53.780 --> 00:00:57.700
+custom prompt for it to build out a plan for
+
+00:00:57.760 --> 00:01:01.540
+my application. Now, in the interest of time, I've already
+
+00:01:01.660 --> 00:01:04.700
+built the application. So let's go ahead and look at the deployed
+
+00:01:04.820 --> 00:01:07.100
+application built by Coco.
+
+00:01:08.320 --> 00:01:11.160
+Here we go. So you'll see there's four
+
+00:01:11.920 --> 00:01:15.340
+cards at the very top. This is a live streaming
+
+00:01:15.500 --> 00:01:18.860
+application. You will see there's some data coming in,
+
+00:01:19.400 --> 00:01:23.000
+and I want to have Coco fix this data
+
+00:01:23.120 --> 00:01:27.090
+pipeline for us, okay? So I'm going to open this panel on
+
+00:01:27.120 --> 00:01:30.780
+the right-hand side, my right-hand side, and I'm going to paste the prompt.
+
+00:01:31.320 --> 00:01:35.040
+All I'm asking it to do is basically see what's
+
+00:01:35.100 --> 00:01:38.720
+wrong and help me fix it using natural
+
+00:01:38.820 --> 00:01:42.380
+language. This is amazing. You will see the data is
+
+00:01:42.400 --> 00:01:46.220
+flowing in. Coco is trying to figure out what exactly
+
+00:01:46.320 --> 00:01:49.580
+is the problem here. It will look at existing
+
+00:01:49.660 --> 00:01:53.270
+tasks. Are they suspended? Are there any columns missing?
+
+00:01:53.900 --> 00:01:56.680
+If you look at my prompt, it's very generic.
+
+00:01:57.180 --> 00:02:00.920
+Now, while Coco is cooking, yes, I just made that up.
+
+00:02:01.320 --> 00:02:05.110
+While Coco is cooking, let's look at where the data is coming
+
+00:02:05.240 --> 00:02:09.200
+from. So data is being streamed live using Data Stream
+
+00:02:09.600 --> 00:02:12.560
+and also inserted into an Iceberg table.
+
+00:02:13.120 --> 00:02:16.280
+Now, that data is joined with
+
+00:02:16.800 --> 00:02:20.620
+Salesforce using Salesforce zero-copy data
+
+00:02:20.680 --> 00:02:23.940
+connector. All of that happening right in front of us.
+
+00:02:24.280 --> 00:02:27.980
+And you'll see on the right-hand side, it's figured out that there is
+
+00:02:28.020 --> 00:02:30.720
+device type missing in one of the tasks.
+
+00:02:31.040 --> 00:02:34.700
+It's already altered the task, and it's trying to verify what
+
+00:02:34.900 --> 00:02:37.480
+else can it do to fix the pipeline for us.
+
+00:02:37.960 --> 00:02:39.940
+Now, let's go ahead and also look at
+
+00:02:40.860 --> 00:02:44.720
+a couple of other things. Down below, you will see that there's
+
+00:02:44.800 --> 00:02:48.720
+a selector, if you will, for selecting
+
+00:02:48.940 --> 00:02:52.760
+different models. What I've chosen is auto, but depending
+
+00:02:52.820 --> 00:02:56.480
+on your use cases, you can select one from the drop-down.
+
+00:02:57.120 --> 00:02:59.640
+Now, let's go ahead and see what Coco is cooking.
+
+00:02:59.700 --> 00:03:02.700
+It's asking me to run some of these commands.
+
+00:03:02.740 --> 00:03:06.600
+It's doing it so that destructive commands
+
+00:03:06.640 --> 00:03:09.880
+are not executed automatically. It requires user
+
+00:03:09.920 --> 00:03:12.420
+permission before it can move forward.
+
+00:03:12.840 --> 00:03:15.260
+So let's go ahead and see what else is it going to run.
+
+00:03:16.060 --> 00:03:20.040
+While Coco is cooking, I'm going to show you where the data is
+
+00:03:20.080 --> 00:03:23.800
+coming from. This is a direct share that's streaming the
+
+00:03:23.840 --> 00:03:26.900
+data from Salesforce zero-copy connector.
+
+00:03:27.700 --> 00:03:31.120
+These are the tables that are being joined live, fan
+
+00:03:31.160 --> 00:03:34.600
+profiles and ticket history. These are coming from
+
+00:03:35.000 --> 00:03:37.280
+Salesforce zero-copy data connector.
+
+00:03:37.820 --> 00:03:41.180
+Now, the task has executed successfully.
+
+00:03:41.420 --> 00:03:44.360
+I believe it's diagnosed and fixed the problem.
+
+00:03:44.400 --> 00:03:47.820
+We will see that the cards will actually flip green
+
+00:03:48.380 --> 00:03:52.300
+here in just a second. If not, I can always verify
+
+00:03:52.660 --> 00:03:56.600
+the data pipeline. Go ahead and click that, and let's see what
+
+00:03:56.640 --> 00:04:00.180
+Coco does in addition to what we already asked it to do.
+
+00:04:00.620 --> 00:04:00.860
+Now,
+
+00:04:02.300 --> 00:04:06.160
+Christian mentioned that there's a cool feature
+
+00:04:06.240 --> 00:04:09.600
+called Snap and Ask I'm going to show you next.
+
+00:04:09.620 --> 00:04:13.610
+But let's wait while Coco is cooking, and I will show you on
+
+00:04:13.640 --> 00:04:17.420
+the desktop app to see what the plan it's built out.
+
+00:04:18.500 --> 00:04:21.820
+Here you will see every single step is laid out as part of the
+
+00:04:21.880 --> 00:04:25.740
+plan using Coco Desktop. Now I can either go ahead and edit
+
+00:04:25.780 --> 00:04:29.580
+the plan, also click on Build, where it will start
+
+00:04:29.700 --> 00:04:33.240
+building the application, very similar to what we just
+
+00:04:33.300 --> 00:04:34.140
+saw in
+
+00:04:35.160 --> 00:04:37.908
+Snowsight. Let's go backAnd
+
+00:04:38.248 --> 00:04:41.248
+identify lowest row count, no data loss.
+
+00:04:41.568 --> 00:04:45.268
+Let me go ahead and just refresh here really quick and see what it
+
+00:04:45.328 --> 00:04:45.928
+has done.
+
+00:04:46.728 --> 00:04:46.968
+Now,
+
+00:04:50.208 --> 00:04:53.908
+so there are two things in common between AI and
+
+00:04:53.948 --> 00:04:57.888
+Dash Desai. My last name has AI, and
+
+00:04:57.908 --> 00:05:01.748
+Dash and AI can both make mistakes. Okay?
+
+00:05:02.188 --> 00:05:02.428
+Now,
+
+00:05:03.448 --> 00:05:05.348
+I want to show you something really cool.
+
+00:05:05.768 --> 00:05:08.988
+Now, I'm going to go ahead and say please
+
+00:05:10.328 --> 00:05:11.708
+fix the
+
+00:05:12.708 --> 00:05:13.388
+cards
+
+00:05:16.288 --> 00:05:16.588
+now.
+
+00:05:18.088 --> 00:05:21.418
+While Coco is cooking, I want to wrap up what we just saw.
+
+00:05:21.768 --> 00:05:24.848
+Okay? App developers and data engineers can use
+
+00:05:24.908 --> 00:05:28.388
+Coco from either Snowsight or also
+
+00:05:28.448 --> 00:05:31.697
+from Coco desktop application. We saw live
+
+00:05:32.028 --> 00:05:35.788
+streaming events being populated, along with
+
+00:05:35.868 --> 00:05:39.308
+Salesforce data, and we also saw how
+
+00:05:39.628 --> 00:05:43.468
+Coco does not run any destructive commands without user
+
+00:05:43.548 --> 00:05:46.898
+giving permission. I think that's all the time I have right now.
+
+00:05:46.968 --> 00:05:47.708
+Back to you, Christian.
+`
+            var subOffsetSec = 0;
+            var activeVttLang = 'en';
+            var video = document.getElementById('demo-video');
+            var badge = document.getElementById('demo-step-badge');
+            var steps = [
+              { from:0,   to:60,  num:'❶', label:'CoCo Desktop Launch' },
+              { from:60,  to:180, num:'❷', label:'Pipeline Diagnose & Fix' },
+              { from:180, to:270, num:'❸', label:'Snap and Ask' },
+              { from:270, to:999, num:'❹', label:'Wrap-up' },
+            ];
+
+            function parseVTT(text) {
+              var cues = [];
+              var lines = text.split('\n');
+              var i = 0;
+              while(i < lines.length) {
+                var line = lines[i].trim();
+                if(line.indexOf(' --> ') > -1) {
+                  var parts = line.split(' --> ');
+                  var start = vttTimeToSec(parts[0].trim());
+                  var end   = vttTimeToSec(parts[1].trim());
+                  var textLines = [];
+                  i++;
+                  while(i < lines.length && lines[i].trim() !== '') {
+                    textLines.push(lines[i]);
+                    i++;
+                  }
+                  cues.push({start:start, end:end, text:textLines.join('\n')});
+                } else { i++; }
+              }
+              return cues;
+            }
+
+            function vttTimeToSec(ts) {
+              var parts = ts.split(':');
+              return parseInt(parts[0])*3600 + parseInt(parts[1])*60 + parseFloat(parts[2]);
+            }
+
+            function buildVTT(cues, offsetSec) {
+              var lines = ['WEBVTT', ''];
+              cues.forEach(function(c) {
+                var s = Math.max(0, c.start + offsetSec);
+                var e = Math.max(s+0.1, c.end + offsetSec);
+                lines.push(secToVttTime(s) + ' --> ' + secToVttTime(e));
+                lines.push(c.text);
+                lines.push('');
+              });
+              return lines.join('\n');
+            }
+
+            function secToVttTime(s) {
+              var h = Math.floor(s/3600); s -= h*3600;
+              var m = Math.floor(s/60);   s -= m*60;
+              var sec = Math.floor(s);
+              var ms  = Math.round((s - sec)*1000);
+              return (h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(sec<10?'0':'')+sec+'.'+(ms<100?(ms<10?'00':'0'):'')+ms;
+            }
+
+            function makeBlobTrack(vttText, lang, label){
+              var blob=new Blob([vttText],{type:'text/vtt'});
+              var url=URL.createObjectURL(blob);
+              var t=document.createElement('track');
+              t.kind='subtitles'; t.label=label; t.srclang=lang; t.src=url;
+              return t;
+            }
+
+            var parsedCues = window.parsedCues = { ja: parseVTT(VTT_JA), en: parseVTT(VTT_EN) };
+
+            window.rebuildTrack = function rebuildTrack(lang) {
+              var cues = parsedCues[lang];
+              var vttText = buildVTT(cues, subOffsetSec);
+              var old = tracks[lang];
+              if(old && old.parentNode) old.parentNode.removeChild(old);
+              var t = makeBlobTrack(vttText, lang, lang==='ja'?'Japanese':'English');
+              tracks[lang] = t;
+              video.appendChild(t);
+              setTimeout(function(){
+                t.track.mode = (activeVttLang===lang) ? 'showing' : 'hidden';
+              }, 100);
+            }
+
+            var tracks = {
+              ja: makeBlobTrack(VTT_JA, 'ja', 'Japanese'),
+              en: makeBlobTrack(VTT_EN, 'en', 'English'),
+            };
+
+            video.appendChild(tracks.ja);
+            video.appendChild(tracks.en);
+
+            setTimeout(function(){
+              tracks.ja.track.mode = 'hidden';
+              tracks.en.track.mode = 'showing';
+            }, 200);
+
+            window.setDemoTrack = function(lang){
+              activeVttLang = lang;
+              tracks.ja.track.mode = 'hidden';
+              tracks.en.track.mode = 'hidden';
+              if(lang === 'ja') tracks.ja.track.mode = 'showing';
+              else if(lang === 'en') tracks.en.track.mode = 'showing';
+
+              ['btn-ja','btn-en','btn-off'].forEach(function(id){
+                var el = document.getElementById(id);
+                var active = (id==='btn-ja'&&lang==='ja')||(id==='btn-en'&&lang==='en')||(id==='btn-off'&&lang==='off');
+                el.style.background = active ? '#29B5E8' : 'transparent';
+                el.style.color = active ? '#fff' : '#A8C0E0';
+                el.style.borderColor = active ? '#29B5E8' : '#555';
+              });
+            };
+
+            video.addEventListener('timeupdate', function(){
+              var t = video.currentTime;
+              for(var i=0;i<steps.length;i++){
+                if(t>=steps[i].from && t<steps[i].to){
+                  badge.style.display='block';
+                  badge.innerHTML = steps[i].num+'<br><span style="font-size:10px;font-weight:400;opacity:0.85;">'+steps[i].label+'</span>';
+                  return;
+                }
+              }
+              badge.style.display='none';
+            });
+            video.addEventListener('pause', function(){ badge.style.display='none'; });
+            video.addEventListener('ended', function(){ badge.style.display='none'; });
+          })();
+          </script>
+          <p class="scene-caption">Recorded clip with audio — CoCo Desktop diagnosing and fixing a live streaming app pipeline failure using natural language</p>
+          <ol class="demo-steps">
+            <li><strong>CoCo Desktop</strong> diagnoses a live streaming app failure using natural language (identifies missing device_type column)</li>
+            <li>Data sources: <strong>Snowflake Data Stream</strong> + <strong>Iceberg table</strong> + <strong>Salesforce zero-copy connector</strong></li>
+            <li>Destructive commands require user approval — AI that doesn't act unilaterally</li>
+            <li><strong>Snap and Ask</strong>: select the engagement chart, ask "why did this drop?" — and get a detailed answer</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Act 2 -->
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--sf-accent);"></div>
+        <div class="timeline-card">
+          <div class="speaker-row">
+            <div class="speaker-avatar" style="background:linear-gradient(135deg,#29B5E8,#00D4B1);">🛡️</div>
+            <div class="speaker-info">
+              <div class="name">Christian Kleinerman</div>
+              <div class="role">EVP of Product — Snowflake</div>
+            </div>
+          </div>
+          <h3>Act 2: Trust — Governance &amp; Security (50:00–1:14:15)</h3>
+          <img src="screenshots/platform/07_interactive_compiler.jpg" alt="Interactive Compiler 40x faster" class="scene-capture">
+          <p class="scene-caption">Interactive Compiler announced — "40X FASTER" compile times shown on stage (~1:05:27)</p>
+          <ul class="point-list">
+            <li><strong>Intent-driven Governance</strong>: just say "protect all PII" — automatic classification, policy generation, and ongoing governance kick in (powered by CoCo/AI)</li>
+            <li><strong>Horizon AI Guardrails</strong> (existing + zero-day): defends CoCo/CoWork against jailbreaks and prompt injection at runtime</li>
+            <li><strong>Agent Identity</strong>: new context function to detect the agent execution context. Referenceable from masking policies and row access policies</li>
+            <li><strong>Data Movement Policies</strong>: blocks tagged data from being transferred to external stages or downloaded via Snowsight</li>
+            <li><strong>Multi-party Approvals</strong> (Private Preview): high-risk operations require 2-person approval. Even a solo admin cannot disable MFA unilaterally</li>
+            <li><strong>Trust Center AI Security Checks</strong> (Public Preview): scans agent and AI configurations against best practices</li>
+            <li><strong>Horizon Context (NEW)</strong>: automatically feeds semantic signals to CoCo/CoWork/Cortex agents. Integrates Semantic Views and external metadata connectors</li>
+            <li><strong>Adaptive Compute GA</strong>: ~2x faster vs. Gen1, currently rolling out</li>
+            <li><strong>Interactive Compiler</strong> (NEW): new query compiler delivers <strong>40x faster compilation</strong> → 3–4x workload acceleration</li>
+            <li><strong>Unistore 8x optimization</strong> (Public Preview): dramatically improved latency and throughput. Hybrid Table users should re-evaluate</li>
+            <li><strong>Next-gen account replication</strong>: <strong>20x faster</strong>, with guaranteed RPO SLA for stronger business continuity</li>
+            <li><strong>AI Cost Governance</strong>: integrates AI usage into Budget. Per-user quotas, Budget custom actions (trigger Stored Procedures at thresholds)</li>
+            <li><strong>Observe acquisition completed</strong>: natively integrates logs, APM, and infrastructure monitoring into Snowflake. CoCo CLI + Iceberg compatible</li>
+          </ul>
+          <img src="screenshots/platform/05_caitlin_thomson_reuters.jpg" alt="Caitlin Hugerty Thomson Reuters" class="scene-capture">
+          <p class="scene-caption">Caitlin Hugerty (Thomson Reuters) × Christian Kleinerman — fireside chat on stage (~56:54)</p>
+          <div class="customer-card">
+            <div class="customer-header">
+              <div class="customer-logo" style="background:#FF6B00; color:#fff; font-weight:700; font-size:11px; padding:4px 10px; border-radius:8px; display:flex; align-items:center; justify-content:center; min-width:60px;">REUTERS</div>
+              <div>
+                <div class="customer-name">Thomson Reuters</div>
+                <div class="customer-person">Caitlin Hugerty — VP of AI &amp; Data</div>
+              </div>
+            </div>
+            <ul class="point-list">
+              <li><strong>CoCounsel</strong>: flagship AI for legal, tax, and audit professionals. Used by <strong>over 1 million</strong> professionals in daily work</li>
+              <li><strong>Semantic Intelligence</strong>: 1,500+ internal users rely on it for the most critical financial and business decisions</li>
+              <li>Integrates Reuters news, commodity, HR, and other structured and unstructured data with governance — running AI products at production scale</li>
+              <li>Not pilots — <strong>production operations</strong>: finance-validated metrics embedded in key workflows</li>
+            </ul>
+            <div class="highlight-quote" style="margin-top:14px;">
+              "Governance is an enabler, not a constraint — it de-risks and accelerates our AI transformation."
+              <span class="quote-author">— Caitlin Hugerty, Thomson Reuters</span>
+            </div>
+          </div>
+          <h4 style="color:var(--sf-blue); font-size:14px; margin:16px 0 10px;">Demo 2: Governance (Dash Desai)</h4>
+          <span class="video-timestamp-badge">🎬 Governance Demo &nbsp;1:09:13〜1:14:15 · ~5 min</span>
+          <div class="video-embed-wrapper" style="position:relative;">
+            <div id="demo2-step-badge" style="
+              display:none;
+              position:absolute;
+              top:10px;
+              right:12px;
+              background:rgba(0,0,0,0.72);
+              color:#fff;
+              font-size:11px;
+              font-weight:700;
+              padding:4px 10px;
+              border-radius:20px;
+              pointer-events:none;
+              z-index:10;
+              letter-spacing:0.03em;
+              line-height:1.5;
+              text-align:center;
+              max-width:200px;
+              backdrop-filter:blur(4px);
+            "></div>
+            <video id="demo2-video" src="screenshots/platform/demo2_gov.webm" controls preload="metadata" style="width:100%;"></video>
+          </div>
+          <div style="margin-top:10px;">
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px;">
+              <span style="font-size:12px;color:#A8C0E0;font-weight:600;">자막:</span>
+              <button onclick="setDemo2Track('ja')" id="btn2-ja" style="
+                font-size:11px;padding:3px 12px;border-radius:12px;border:1px solid #555;
+                background:transparent;color:#A8C0E0;cursor:pointer;font-weight:600;">🇯🇵 Japanese</button>
+              <button onclick="setDemo2Track('en')" id="btn2-en" style="
+                font-size:11px;padding:3px 12px;border-radius:12px;border:1px solid #29B5E8;
+                background:#29B5E8;color:#fff;cursor:pointer;font-weight:700;">🇺🇸 English</button>
+              <button onclick="setDemo2Track('off')" id="btn2-off" style="
+                font-size:11px;padding:3px 12px;border-radius:12px;border:1px solid #555;
+                background:transparent;color:#A8C0E0;cursor:pointer;font-weight:600;">✕ OFF</button>
+            </div>
+          </div>
+          <p class="scene-caption" style="margin-top:8px;">Recorded clip with audio — CoWork demonstrating governance through masking policies, data movement policies, and Trust Center</p>
+          <ol class="demo-steps">
+            <li>Request VIP contact info via CoWork → <strong>masking policy</strong> fires, values are hidden</li>
+            <li>Attempt to export data to an external stage → <strong>Data Movement Policy</strong> blocks it (real failure on stage)</li>
+            <li><strong>Trust Center</strong>: unified view of AI guardrails, data security, and DMP violations</li>
+          </ol>
+          <script>
+          (function(){
+            var VTT2_JA = `WEBVTT
+
+00:00:00.000 --> 00:00:03.740
+では、Dash に次のデモをお願いしましょう。
+
+00:00:03.910 --> 00:00:04.590
+Dash に拍手を！
+
+00:00:06.030 --> 00:00:06.690
+ありがとう、Christian。
+
+00:00:08.910 --> 00:00:12.790
+第2デモに入る前に、
+
+00:00:12.830 --> 00:00:15.290
+CoCo が裏でやっていたことをお見せします。
+
+00:00:15.311 --> 00:00:19.170
+先ほど依頼したパイプラインがどうなったか見てみましょう。
+
+00:00:19.210 --> 00:00:22.990
+画面を見てください。
+
+00:00:23.050 --> 00:00:26.351
+カードが全部グリーンになりました！すごいでしょう？
+
+00:00:27.370 --> 00:00:27.830
+かっこいいですよね？
+
+00:00:28.681 --> 00:00:32.270
+根本原因を見てください。device_type という
+
+00:00:32.330 --> 00:00:35.960
+カラムが欠損していたテーブルを特定して、
+
+00:00:36.030 --> 00:00:38.351
+自動で診断・修正しました。
+
+00:00:38.391 --> 00:00:42.100
+次は今日最もクールなもの、
+
+00:00:42.150 --> 00:00:45.890
+Christian も紹介した Snap and Ask をお見せします。
+
+00:00:46.150 --> 00:00:48.590
+このページをリフレッシュして、
+
+00:00:50.090 --> 00:00:54.050
+チャートが表示されるはずです。
+
+00:00:54.490 --> 00:00:58.390
+エンゲージメントチャートです。ここをドラッグして
+
+00:00:58.450 --> 00:01:02.170
+「Explain」をクリックします。これにより
+
+00:01:02.230 --> 00:01:05.910
+CoCo に文脈を与え、
+
+00:01:06.210 --> 00:01:10.150
+何が
+
+00:01:10.270 --> 00:01:13.790
+エンゲージメント低下を引き起こしているか深いインサイトを得られます。すごいですよね？
+
+00:01:15.270 --> 00:01:16.030
+かなり素晴らしいです。
+
+00:01:17.430 --> 00:01:19.090
+今日最もクールなものの一つです。
+
+00:01:19.510 --> 00:01:23.410
+では第2デモに移ります。
+
+00:01:23.470 --> 00:01:27.170
+CoCo に処理させながら、タブを切り替えます。
+
+00:01:27.290 --> 00:01:31.060
+これが CoWork です。Christian が紹介しました。
+
+00:01:31.130 --> 00:01:34.810
+ここでデータ移動ポリシー、マスキングポリシー、
+
+00:01:34.890 --> 00:01:38.630
+エージェント ID を
+
+00:01:38.990 --> 00:01:41.650
+エージェント層で活用する方法をお見せします。
+
+00:01:42.170 --> 00:01:45.290
+ツアー運営担当者として、CoWork に
+
+00:01:46.210 --> 00:01:46.730
+依頼します。
+
+00:01:47.570 --> 00:01:51.230
+VIP リストと
+
+00:01:51.250 --> 00:01:54.950
+連絡先情報を取得してください。私にはアクセス権限がないため、
+
+00:01:55.030 --> 00:01:58.730
+エージェントはテーブルを見られますが、
+
+00:01:59.490 --> 00:02:03.350
+実際の値は返せないはずです。
+
+00:02:03.490 --> 00:02:07.460
+例えば、各 VIP の連絡先情報は
+
+00:02:07.510 --> 00:02:10.940
+マスクされるか、
+
+00:02:11.350 --> 00:02:14.450
+「提供できません」と返ってくるでしょう。
+
+00:02:14.470 --> 00:02:16.480
+これは素晴らしいです。
+
+00:02:16.850 --> 00:02:18.600
+では実際にどのように設定するのでしょうか。
+
+00:02:19.430 --> 00:02:23.290
+データ移動ポリシーと
+
+00:02:23.370 --> 00:02:27.130
+エージェント ID は Snowflake の
+
+00:02:27.210 --> 00:02:30.930
+データベースやテーブルと同じファーストクラスオブジェクトです。
+
+00:02:31.270 --> 00:02:34.870
+CREATE 文が確認できます。また
+
+00:02:35.690 --> 00:02:39.230
+DMP 違反もここで確認できます。
+
+00:02:39.270 --> 00:02:43.250
+セキュリティ担当者として、Trust
+
+00:02:43.310 --> 00:02:47.130
+Center でアカウント内の全てを
+
+00:02:47.170 --> 00:02:50.950
+Horizon Catalog と
+
+00:02:51.010 --> 00:02:53.550
+Trust Center で俯瞰できます。違反も確認できます。
+
+00:02:54.900 --> 00:02:58.790
+スキャナーを管理します。常に
+
+00:02:58.830 --> 00:03:01.540
+修正または
+
+00:03:01.550 --> 00:03:05.150
+修復できるものを探しています。データセキュリティと AI
+
+00:03:05.210 --> 00:03:09.170
+セキュリティ。セキュリティ担当者として
+
+00:03:09.230 --> 00:03:13.090
+誰がどのエージェントを作ったか、
+
+00:03:13.470 --> 00:03:16.730
+どのセキュリティスキャナーが有効で、AI
+
+00:03:16.810 --> 00:03:20.550
+ガードレールはセキュリティ担当者が
+
+00:03:20.630 --> 00:03:24.470
+注目する主要項目の一つです。ランタイムで
+
+00:03:24.710 --> 00:03:26.310
+プロンプトインジェクションを防護します。
+
+00:03:30.910 --> 00:03:31.310
+ありがとうございました。
+
+00:03:32.190 --> 00:03:34.670
+CoWork に戻って何をしたか見てみましょう。
+
+00:03:34.770 --> 00:03:38.490
+テーブルにカラムはありますが、
+
+00:03:38.690 --> 00:03:42.570
+ポリシーにより
+
+00:03:42.670 --> 00:03:45.610
+実際の値を提供できないと返ってきました。
+
+00:03:45.950 --> 00:03:49.650
+では、データのエクスポートを
+
+00:03:49.690 --> 00:03:50.010
+依頼してみましょう。
+
+00:03:50.870 --> 00:03:54.770
+ツアー運営担当者として外部ステージへの
+
+00:03:54.810 --> 00:03:58.590
+エクスポートを要求します。データ移動
+
+00:03:58.650 --> 00:04:02.270
+ポリシーがデータ持ち出しを阻止します。
+
+00:04:02.310 --> 00:04:05.782
+展開すると、
+
+00:04:06.162 --> 00:04:10.002
+実際の思考プロセスが確認でき、
+
+00:04:10.082 --> 00:04:13.942
+データ移動ポリシーに
+
+00:04:13.982 --> 00:04:14.292
+ブロックされます。
+
+00:04:15.762 --> 00:04:17.562
+多くのレコードがあります。
+
+00:04:18.382 --> 00:04:21.022
+失敗しました。
+
+00:04:22.262 --> 00:04:26.082
+これはユーザーエラーでも AI エラーでもなく、本物の失敗です。
+
+00:04:26.962 --> 00:04:30.222
+データ移動ポリシーによってブロックされています。
+
+00:04:31.042 --> 00:04:31.622
+素晴らしいです。
+
+00:04:33.202 --> 00:04:33.482
+ありがとうございました。
+
+00:04:34.582 --> 00:04:38.202
+まとめましょう。今お見せしたのは
+
+00:04:38.722 --> 00:04:42.702
+セキュリティ担当者が使える
+
+00:04:42.782 --> 00:04:46.522
+Trust Center と
+
+00:04:46.542 --> 00:04:50.522
+データ移動ポリシー、エージェント ID を
+
+00:04:50.602 --> 00:04:53.942
+エージェント層に適用する3つの素晴らしい機能で、
+
+00:04:54.282 --> 00:04:56.462
+Snowflake にあるデータを活用します。
+
+00:04:56.922 --> 00:04:59.082
+Christian にお返しします。
+
+00:04:59.962 --> 00:05:00.322
+ありがとうございました。
+
+00:05:02.142 --> 00:05:03.202
+ありがとう、Dash。
+`;
+            var VTT2_EN = `WEBVTT
+
+00:00:00.000 --> 00:00:03.740
+And this is a good time to get Dash to show you the next demo.
+
+00:00:03.910 --> 00:00:04.590
+Give it up for Dash.
+
+00:00:06.030 --> 00:00:06.690
+Thank you, Christian.
+
+00:00:08.910 --> 00:00:12.790
+Okay, so before I move on to the second demo, I want to show you
+
+00:00:12.830 --> 00:00:15.290
+what Coco was cooking while I was gone.
+
+00:00:15.311 --> 00:00:19.170
+So let's go ahead and see what happened to our pipeline that we asked
+
+00:00:19.210 --> 00:00:22.990
+it to fix before. So let's go ahead and look at the screen again.
+
+00:00:23.050 --> 00:00:26.351
+You'll see that the cards have been flipped green. What do you guys think?
+
+00:00:27.370 --> 00:00:27.830
+Pretty cool?
+
+00:00:28.681 --> 00:00:32.270
+And look at the root cause. It actually figured out that there was a device
+
+00:00:32.330 --> 00:00:35.960
+type, one of the columns that was missing one of the tables, and
+
+00:00:36.030 --> 00:00:38.351
+it diagnosed and actually fixed it.
+
+00:00:38.391 --> 00:00:42.100
+Now, I want to show you one of the coolest things you're going to see today
+
+00:00:42.150 --> 00:00:45.890
+that even Christian mentioned earlier, Snap and Ask.
+
+00:00:46.150 --> 00:00:48.590
+Okay, so I'm going to go ahead and refresh this page,
+
+00:00:50.090 --> 00:00:54.050
+and we'll see that there's going to be a chart, hopefully, here.
+
+00:00:54.490 --> 00:00:58.390
+Engagement chart. What I can do here is drag this
+
+00:00:58.450 --> 00:01:02.170
+section and click on Explain. This is going to
+
+00:01:02.230 --> 00:01:05.910
+give Coco context into what I'm asking it
+
+00:01:06.210 --> 00:01:10.150
+and will give us deep insights into what exactly is
+
+00:01:10.270 --> 00:01:13.790
+causing this drop in engagement. Pretty amazing, yes?
+
+00:01:15.270 --> 00:01:16.030
+It's pretty awesome.
+
+00:01:17.430 --> 00:01:19.090
+One of the coolest things you're going to see today.
+
+00:01:19.510 --> 00:01:23.410
+Now, let's move on to demo two, and let's
+
+00:01:23.470 --> 00:01:27.170
+have Coco cook for now. So for that, I'm going to switch my
+
+00:01:27.290 --> 00:01:31.060
+tabs. This is Cowork. Christian just introduced
+
+00:01:31.130 --> 00:01:34.810
+this, and what I'm going to show you here is how we can
+
+00:01:34.890 --> 00:01:38.630
+leverage data movement policy, masking policies,
+
+00:01:38.990 --> 00:01:41.650
+and agent identity right at the agent layer.
+
+00:01:42.170 --> 00:01:45.290
+So as a tour ops employee, what I'm going to do is ask
+
+00:01:46.210 --> 00:01:46.730
+Cowork
+
+00:01:47.570 --> 00:01:51.230
+to export or get me a list of VIPs with their
+
+00:01:51.250 --> 00:01:54.950
+contact information. Now, I'm not allowed to access the
+
+00:01:55.030 --> 00:01:58.730
+information, so even though agent has the
+
+00:01:59.490 --> 00:02:03.350
+ability to look at the table, it's not going to actually be able to give me
+
+00:02:03.490 --> 00:02:07.460
+the values that I'm looking for. For example, contact information
+
+00:02:07.510 --> 00:02:10.940
+for each of the VIPs. We'll see when the data comes back,
+
+00:02:11.350 --> 00:02:14.450
+either it's going to be masked, or it's going to say, "I can't provide that
+
+00:02:14.470 --> 00:02:16.480
+information." That is pretty amazing.
+
+00:02:16.850 --> 00:02:18.600
+Now, how do you actually set up
+
+00:02:19.430 --> 00:02:23.290
+DMPs, for example, data movement policy and agent
+
+00:02:23.370 --> 00:02:27.130
+identity? These are first-class Snowflake objects, just
+
+00:02:27.210 --> 00:02:30.930
+like as you would create a database or a table in your account.
+
+00:02:31.270 --> 00:02:34.870
+So here you'll see that I have some create statements, and I can also
+
+00:02:35.690 --> 00:02:39.230
+actually look at all the DMP violations right here.
+
+00:02:39.270 --> 00:02:43.250
+Or also, as a security officer, you can look at Trust
+
+00:02:43.310 --> 00:02:47.130
+Center, where you have a holistic view of everything that's
+
+00:02:47.170 --> 00:02:50.950
+happening within this account through Horizon Catalog
+
+00:02:51.010 --> 00:02:53.550
+and Trust Center. Here you'll see violations.
+
+00:02:54.900 --> 00:02:58.790
+Manage scanners. Now, these are constantly looking for
+
+00:02:58.830 --> 00:03:01.540
+things that it can help you either fix or
+
+00:03:01.550 --> 00:03:05.150
+remediate. Data security and AI
+
+00:03:05.210 --> 00:03:09.170
+security. This is where, as a security officer, you
+
+00:03:09.230 --> 00:03:13.090
+have a holistic view of who's created which agents,
+
+00:03:13.470 --> 00:03:16.730
+what kind of security scanners have been enabled, and AI
+
+00:03:16.810 --> 00:03:20.550
+guardrails is one of the top things that security officer will
+
+00:03:20.630 --> 00:03:24.470
+look for. Basically, it's going to, in runtime, protect
+
+00:03:24.710 --> 00:03:26.310
+against prompt injection.
+
+00:03:30.910 --> 00:03:31.310
+Thank you.
+
+00:03:32.190 --> 00:03:34.670
+Let's go back to Cowork and see what it did.
+
+00:03:34.770 --> 00:03:38.490
+So here it said that I have all these columns in
+
+00:03:38.690 --> 00:03:42.570
+the data, in the table, but it's not able to actually give me
+
+00:03:42.670 --> 00:03:45.610
+actual values because of the policies put in place.
+
+00:03:45.950 --> 00:03:49.650
+Now, let me also ask to export the
+
+00:03:49.690 --> 00:03:50.010
+data.
+
+00:03:50.870 --> 00:03:54.770
+So as a tour ops employee, I'm asking it to export the
+
+00:03:54.810 --> 00:03:58.590
+data to an external stage. Now again, data movement
+
+00:03:58.650 --> 00:04:02.270
+policy will stop this data exfiltration, and we'll see
+
+00:04:02.310 --> 00:04:05.782
+that here in just a second.Even if I expand this,
+
+00:04:06.162 --> 00:04:10.002
+you look at the actual thinking behind this, and then we'll
+
+00:04:10.082 --> 00:04:13.942
+see that it will run into a data movement policy down
+
+00:04:13.982 --> 00:04:14.292
+below,
+
+00:04:15.762 --> 00:04:17.562
+that many records are in here,
+
+00:04:18.382 --> 00:04:21.022
+and there's a failure. Thank you.
+
+00:04:22.262 --> 00:04:26.082
+This is a real failure, not a user error or not an AI error.
+
+00:04:26.962 --> 00:04:30.222
+And here you'll see that it's being blocked by data movement policy.
+
+00:04:31.042 --> 00:04:31.622
+Pretty sweet.
+
+00:04:33.202 --> 00:04:33.482
+Thank you.
+
+00:04:34.582 --> 00:04:38.202
+Okay. So let me wrap up. What we just saw
+
+00:04:38.722 --> 00:04:42.702
+is three amazing things that a security officer
+
+00:04:42.782 --> 00:04:46.522
+is able to do using either Trust Center and also
+
+00:04:46.542 --> 00:04:50.522
+apply these data movement policies, agent identity, at the
+
+00:04:50.602 --> 00:04:53.942
+agent layer, and that trickles down all the way
+
+00:04:54.282 --> 00:04:56.462
+to where your data lives in Snowflake.
+
+00:04:56.922 --> 00:04:59.082
+With that, I'm going to hand it back to Christian.
+
+00:04:59.962 --> 00:05:00.322
+Thank you.
+
+00:05:02.142 --> 00:05:03.202
+Thank you, Dash.
+`
+            var subOffset2 = 0;
+            var steps2 = [
+              { from:0,   to:91,  num:'❶', label:'Pipeline Fix Confirmed' },
+              { from:91,  to:226, num:'❷', label:'CoWork Masking + Trust Center' },
+              { from:226, to:302, num:'❸', label:'Data Movement Policy Block' },
+            ];
+            function parseVTT2(vttText){
+              var cues=[];
+              var blocks=vttText.trim().split(/\n\n+/);
+              blocks.forEach(function(b){
+                var lines=b.split('\n');
+                var ti=lines.findIndex(function(l){return l.includes('-->');});
+                if(ti<0) return;
+                var times=lines[ti].split('-->');
+                function toSec(s){
+                  var p=s.trim().split(':');
+                  if(p.length===3) return +p[0]*3600+ +p[1]*60+ +parseFloat(p[2]);
+                  return +p[0]*60+ +parseFloat(p[1]);
+                }
+                cues.push({start:toSec(times[0]),end:toSec(times[1]),text:lines.slice(ti+1).join(' ')});
+              });
+              return cues;
+            }
+            function makeBlobTrack2(vttText, lang, label){
+              var blob=new Blob([vttText],{type:'text/vtt'});
+              var url=URL.createObjectURL(blob);
+              var t=document.createElement('track');
+              t.kind='subtitles'; t.label=label; t.srclang=lang; t.src=url;
+              return t;
+            }
+            var parsedCues2 = { ja: parseVTT2(VTT2_JA), en: parseVTT2(VTT2_EN) };
+            var currentLang2 = 'ja';
+            function rebuildTrack2(lang){
+              var v=document.getElementById('demo2-video');
+              if(!v) return;
+              Array.from(v.querySelectorAll('track')).forEach(function(t){v.removeChild(t);});
+              if(lang==='off') return;
+              var vttSrc = lang==='ja' ? VTT2_JA : VTT2_EN;
+              var shiftedVtt = shiftVTT2(vttSrc, subOffset2);
+              var track = makeBlobTrack2(shiftedVtt, lang, lang==='ja'?'Japanese':'English');
+              track.default = true;
+              v.appendChild(track);
+              v.textTracks[0].mode='showing';
+            }
+            function shiftVTT2(vttText, offsetSec){
+              return vttText.replace(/(\d{2}:\d{2}:\d{2}\.\d{3}|\d{2}:\d{2}\.\d{3})/g, function(ts){
+                var p=ts.split(':');
+                var s;
+                if(p.length===3) s=+p[0]*3600+ +p[1]*60+ +parseFloat(p[2]);
+                else s=+p[0]*60+ +parseFloat(p[1]);
+                s=Math.max(0,s+offsetSec);
+                var h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;
+                return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+sec.toFixed(3).padStart(6,'0');
+              });
+            }
+            window.setDemo2Track = function(lang){
+              currentLang2 = lang;
+              ['ja','en','off'].forEach(function(l){
+                var btn=document.getElementById('btn2-'+l);
+                if(!btn) return;
+                if(l===lang){ btn.style.background='#29B5E8'; btn.style.color='#fff'; btn.style.borderColor='#29B5E8'; }
+                else { btn.style.background='transparent'; btn.style.color='#A8C0E0'; btn.style.borderColor='#555'; }
+              });
+              rebuildTrack2(lang);
+            };            var v2=document.getElementById('demo2-video');
+            var badge2=document.getElementById('demo2-step-badge');
+            if(v2){
+              v2.addEventListener('timeupdate',function(){
+                var t=v2.currentTime;
+                var active=null;
+                steps2.forEach(function(s){if(t>=s.from&&t<s.to) active=s;});
+                if(active){badge2.innerHTML=active.num+' <span style="font-size:10px;opacity:0.85">'+active.label+'</span>';badge2.style.display='block';}
+                else badge2.style.display='none';
+              });
+              v2.addEventListener('loadedmetadata',function(){ setDemo2Track('en'); });
+            }
+          })();
+          </script>
+        </div>
+      </div>
+
+      <!-- Act 3 -->
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--sf-gold);"></div>
+        <div class="timeline-card">
+          <div class="speaker-row">
+            <div class="speaker-avatar" style="background:linear-gradient(135deg,#F59E0B,#EF4444);">🌐</div>
+            <div class="speaker-info">
+              <div class="name">Christian Kleinerman</div>
+              <div class="role">EVP of Product — Snowflake</div>
+            </div>
+          </div>
+          <h3>Act 3: Open &amp; Interoperable — A World Without Silos (1:14:15–1:28:15)</h3>
+          <img src="screenshots/platform/12_christian_act3_b.jpg" alt="Christian Kleinerman Act3 Open Interoperable" class="scene-capture">
+          <p class="scene-caption">Open &amp; Interoperable section — Iceberg V3, SAP GA, Open Sharing, and more (~1:15:30)</p>
+          <ul class="point-list">
+            <li><strong>Apache Iceberg V3</strong>: broadest implementation. Participating in V4 spec development. Full bidirectional catalog interoperability (Snowflake Horizon ↔ external catalogs)</li>
+            <li><strong>Snowflake Managed Iceberg Storage GA</strong> (AWS + Azure, GCP coming soon): no vendor lock-in</li>
+            <li><strong>Apache Polaris</strong> Iceberg REST catalog integrated into Horizon catalog</li>
+            <li><strong>Open Semantic Interchange</strong>: founded by Snowflake to drive open standardization of semantic layers</li>
+            <li><strong>Data Re-sharing GA</strong>: freely re-share data you've received with other third parties</li>
+            <li><strong>Open Sharing</strong> (Public Preview): share data with non-Snowflake users via Iceberg REST</li>
+            <li><strong>Multi-party Collaboration GA</strong>: multiple organizations collaborate in a single secure environment. Netflix is an early adopter</li>
+            <li><strong>SAP zero-copy integration GA</strong> (the most requested partner integration)</li>
+            <li><strong>Additional zero-copy</strong>: Workday Data Cloud, IBM Watsonx Data (DB2/mainframe), AVEVA Connect (industrial data)</li>
+            <li><strong>Cross-query from CoWork</strong>: apply Snowflake AI directly to external data in Redshift, Postgres, and more</li>
+          </ul>
+              <div style="display:flex;gap:10px;margin-top:12px;">
+                <div style="flex:1;background:rgba(245,158,11,0.12);border-top:3px solid #F59E0B;border-radius:8px;padding:12px 14px;">
+                  <div style="font-size:0.78em;font-weight:700;color:#F59E0B;margin-bottom:4px;">🟡 Expanded Zero-Copy Partners</div>
+                  <div style="font-size:0.85em;color:#CBD5E1;">SAP (GA), Workday, IBM Watsonx, and AVEVA newly added — eliminating application data silos</div>
+                </div>
+                <div style="flex:1;background:rgba(16,185,129,0.12);border-top:3px solid #10B981;border-radius:8px;padding:12px 14px;">
+                  <div style="font-size:0.78em;font-weight:700;color:#10B981;margin-bottom:4px;">🟢 Why Open Sharing Matters</div>
+                  <div style="font-size:0.85em;color:#CBD5E1;">Deliver data to non-Snowflake engines via Iceberg REST — a new paradigm where sharing and interoperability merge</div>
+                </div>
+              </div>
+          <div class="customer-card" style="margin-top:20px;">
+            <div class="customer-header">
+              <img src="screenshots/platform/ua_logo.svg" alt="Under Armour" style="width:110px;height:52px;border-radius:8px;object-fit:contain;">
+              <div>
+                <div class="customer-name">Under Armour</div>
+                <div class="customer-person">Patrick Deroso — Chief Data &amp; AI Officer</div>
+              </div>
+            </div>
+            <img src="screenshots/platform/08_patrick_under_armour.jpg" alt="Patrick Deroso Under Armour CDAO" class="scene-capture" style="margin:12px 0 6px;">
+            <p class="scene-caption">Patrick Deroso (Under Armour CDAO) — takes the stage in a UA jacket, sharing the 7-year Snowflake partnership and their AI Transformation journey (~1:27:00)</p>
+            <ul class="point-list">
+              <li>7-year Snowflake partnership. <strong>Chose Snowflake as a "monument"</strong> — no lock-in, infinitely scalable</li>
+              <li>Internal agent <strong>"Ada"</strong>: every team member can query data in natural language</li>
+              <li>Built <strong>AX (AI-based Process Transformation)</strong> with Elementum (Snowflake partner). Redesigning workflows themselves, not just optimizing them</li>
+            </ul>
+            <div class="highlight-quote" style="margin-top:14px;">
+              "The key thing with the interoperability is our business partners have applications that they want to bring and engage with that data at an enterprise level."
+              <span class="quote-author">— Patrick Deroso, Under Armour CDAO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Act 4 -->
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--sf-accent);"></div>
+        <div class="timeline-card">
+          <div class="speaker-row">
+            <div class="speaker-avatar" style="background:linear-gradient(135deg,#29B5E8,#00D4B1);">🤖</div>
+            <div class="speaker-info">
+              <div class="name">Christian Kleinerman</div>
+              <div class="role">EVP of Product — Snowflake</div>
+            </div>
+          </div>
+          <h3>Act 4: CoWork for Everyone — The Control Plane for All (1:28:15–1:47:15)</h3>
+          <p style="font-size:13px; color:#A8C0E0; margin-bottom:14px;">IT era (request a report → wait days) → BI era (data democratization) → Today: the <strong>"ubiquitous intelligence" era</strong>. Everyone has the power of a data scientist.</p>
+          <div class="customer-card">
+            <div class="customer-header">
+              <img src="screenshots/platform/samsung_logo.svg" alt="Samsung Electronics" style="width:120px;height:44px;border-radius:22px;object-fit:contain;">
+              <div>
+                <div class="customer-name">Samsung Electronics</div>
+                <div class="customer-person">Jung Suh — VP, Digital Commerce</div>
+              </div>
+            </div>
+            <img src="screenshots/platform/09_jung_soo_samsung.jpg" alt="Jung Suh Samsung" class="scene-capture" style="margin:12px 0 6px;">
+            <p class="scene-caption">Jung Suh (Samsung Electronics, VP Digital Commerce) — SIA agent and AX model enabling 1,000 executives to use data daily (~1:32:20)</p>
+            <ul class="point-list">
+              <li>Ran <strong>SIA (Shopper's Insight Action Agent)</strong> during the Galaxy S26 flagship launch. Team workflows: <strong>hours → seconds</strong></li>
+              <li><strong>AX (AI-based Process Transformation)</strong>: AI sits at the center of the process, continuously monitors signals → auto-suggests and routes actions</li>
+              <li><strong>1,000 executives, sales, and marketing staff</strong> using agents daily — none of them are data scientists</li>
+            </ul>
+            <div class="highlight-quote" style="margin-top:14px;">
+              "That shift from the data team as a bottleneck to every leader as their own analyst operating in an AX model — that's the transformation we came to Snowflake for."
+              <span class="quote-author">— Jung Suh, Samsung Electronics</span>
+            </div>
+          </div>
+          <img src="screenshots/platform/11_christian_cowork.jpg" alt="Christian Kleinerman announces new CoWork features" class="scene-capture">
+          <p class="scene-caption">Christian Kleinerman (Snowflake EVP of Product) — announces new CoWork features following the Samsung case study (~1:37:50)</p>
+          <ul class="point-list">
+            <li><strong>Personal Work Engine</strong>: no more agent picker. Your personal agent orchestrates multi-agent workflows in the context of your specific role and work</li>
+            <li><strong>User Memory</strong>: learns and remembers your usage patterns and preferences, continuously improving future response quality</li>
+            <li><strong>Scheduled Tasks in CoWork</strong>: "email me this analysis every Monday at 6am" — set in natural language</li>
+            <li><strong>Next-gen Artifacts</strong>: governed dashboards connected to live data. Build with CoCo → publish and share via CoWork</li>
+            <li><strong>Cortex Sense (NEW)</strong>: automatically improves agent accuracy at runtime by collecting signals and enriching context. Accuracy: <strong>24% → 83%</strong> (on coding agent evaluation set)</li>
+            <li><strong>Natoma acquisition</strong>: connects CoCo/CoWork to <strong>100+ business systems</strong> via MCP</li>
+          </ul>
+          <img src="screenshots/platform/10_cortex_sense.jpg" alt="Cortex Sense announcement" class="scene-capture">
+          <p class="scene-caption">Cortex Sense announced — runtime auto-enhancement improving agent accuracy from 24% → 83% (~1:40:25)</p>
+<h4 style="color:#A78BFA; font-size:14px; margin:16px 0 10px;">Demo 3: CoWork Personal Work Agent (Dash Desai)</h4>
+          <span class="video-timestamp-badge">🎬 CoWork Demo &nbsp;1:41:40〜1:48:39 · ~7 min</span>
+          <div class="video-embed-wrapper" style="position:relative;">
+            <div id="demo3-step-badge" style="
+              display:none;
+              position:absolute;
+              top:10px;
+              right:12px;
+              background:rgba(0,0,0,0.72);
+              color:#fff;
+              font-size:11px;
+              font-weight:700;
+              padding:4px 10px;
+              border-radius:20px;
+              pointer-events:none;
+              z-index:10;
+              letter-spacing:0.03em;
+              line-height:1.5;
+              text-align:center;
+              max-width:200px;
+              backdrop-filter:blur(4px);
+            "></div>
+            <video id="demo3-video" src="screenshots/platform/demo3_cowork.webm" controls preload="metadata" style="width:100%;"></video>
+          </div>
+          <div style="margin-top:10px;">
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px;">
+              <span style="font-size:12px;color:#A8C0E0;font-weight:600;">자막:</span>
+              <button onclick="setDemo3Track('ja')" id="btn3-ja" style="
+                font-size:11px;padding:3px 12px;border-radius:12px;border:1px solid #555;
+                background:transparent;color:#A8C0E0;cursor:pointer;font-weight:600;">🇯🇵 Japanese</button>
+              <button onclick="setDemo3Track('en')" id="btn3-en" style="
+                font-size:11px;padding:3px 12px;border-radius:12px;border:1px solid #29B5E8;
+                background:#29B5E8;color:#fff;cursor:pointer;font-weight:700;">🇺🇸 English</button>
+              <button onclick="setDemo3Track('off')" id="btn3-off" style="
+                font-size:11px;padding:3px 12px;border-radius:12px;border:1px solid #555;
+                background:transparent;color:#A8C0E0;cursor:pointer;font-weight:600;">✕ OFF</button>
+            </div>
+          </div>
+          <p class="scene-caption" style="margin-top:8px;">Recorded clip with audio — Dash Desai demonstrating CoWork Personal Work Agent from "Start my day" through Deep Research, Cortex Sense, and Slack MCP</p>
+          <script>
+          (function(){
+            var VTT3_JA = `WEBVTT
+
+00:00:00.000 --> 00:00:00.282
+デモ3では、
+
+00:00:01.122 --> 00:00:04.582
+VP of Sales として、
+
+00:00:04.762 --> 00:00:08.422
+Christian が紹介した
+
+00:00:08.522 --> 00:00:12.422
+Personal Work Agent を使って賢く働きます。
+
+00:00:12.462 --> 00:00:15.062
+画面に見えているのが CoWork です。
+
+00:00:16.382 --> 00:00:16.662
+はい？
+
+00:00:18.162 --> 00:00:22.082
+以前は Snowflake Intelligence にエージェント選択UIがありましたが、
+
+00:00:22.142 --> 00:00:25.902
+CoWork はその選択UIを
+
+00:00:25.982 --> 00:00:28.911
+廃止しました。全ての操作が
+
+00:00:28.942 --> 00:00:31.522
+私個人に合わせてパーソナライズされるからです。
+
+00:00:31.902 --> 00:00:35.342
+「今日を始めましょう。
+
+00:00:35.622 --> 00:00:39.601
+今日何を知るべきですか？」と入力するだけで、全 MCP コネクタを
+
+00:00:39.702 --> 00:00:43.282
+メール、Slack メッセージなどを確認します。
+
+00:00:43.762 --> 00:00:47.322
+また、VP of Sales として私のアカウントの
+
+00:00:47.782 --> 00:00:51.422
+現在のデータも確認し、
+
+00:00:51.562 --> 00:00:55.262
+売上、エンゲージメントなどの情報を
+
+00:00:56.462 --> 00:01:00.392
+提供します。毎日同じプロンプトを
+
+00:01:00.602 --> 00:01:04.422
+入力する必要はありません。オートメーションの
+
+00:01:04.462 --> 00:01:07.032
+出番です。どういうものか見てみましょう。
+
+00:01:07.082 --> 00:01:11.062
+毎朝6時に
+
+00:01:11.072 --> 00:01:14.062
+受信箱にデイリーブリーフを
+
+00:01:14.102 --> 00:01:17.932
+届けるよう設定しています。今朝送られた
+
+00:01:18.002 --> 00:01:21.242
+4時間前のメールをお見せします。
+
+00:01:22.462 --> 00:01:26.362
+これが CoWork とオートメーションの連携の力です。
+
+00:01:26.842 --> 00:01:27.442
+かなり素晴らしいです。
+
+00:01:29.102 --> 00:01:30.442
+では、
+
+00:01:31.382 --> 00:01:35.142
+次にお見せしたいのは、組織内のチームメンバーと
+
+00:01:35.342 --> 00:01:39.222
+アーティファクトをどう共有・コラボレーションするかです。
+
+00:01:39.242 --> 00:01:42.322
+CoWork に戻りましょう。
+
+00:01:43.822 --> 00:01:47.122
+左側の3番目のメニューが「Artifacts」、
+
+00:01:47.742 --> 00:01:50.542
+中央に「Shared with me」と表示されています。
+
+00:01:50.722 --> 00:01:54.462
+他のチームメンバーが私に共有した
+
+00:01:54.842 --> 00:01:58.782
+アーティファクトです。見えますね。さらに、
+
+00:01:58.842 --> 00:02:02.622
+これらのダッシュボードや
+
+00:02:02.742 --> 00:02:04.762
+アーティファクトに直接インタラクトできます。
+
+00:02:05.702 --> 00:02:07.572
+マイアミで
+
+00:02:08.542 --> 00:02:12.362
+VIP サージ 約45%があったようです。フォローアップとして
+
+00:02:12.402 --> 00:02:16.142
+「このVIPサージの要因は何ですか？
+
+00:02:16.242 --> 00:02:19.762
+ぜひ知りたいです」と聞けます。さらに
+
+00:02:19.822 --> 00:02:23.642
+Deep Research を有効にすることで、
+
+00:02:23.702 --> 00:02:26.622
+なぜこれが起きているか深いインサイトを得られます。
+
+00:02:27.022 --> 00:02:30.102
+CoWork 内でこれを
+
+00:02:30.162 --> 00:02:32.846
+実行するオプションがあります。かなりすごいですよね。
+
+00:02:33.546 --> 00:02:35.026
+CoCo が処理中なので
+
+00:02:36.086 --> 00:02:37.126
+拍手しましょう。大丈夫です。
+
+00:02:38.446 --> 00:02:38.726
+さて、
+
+00:02:39.546 --> 00:02:41.566
+もう一つお見せします。
+
+00:02:42.086 --> 00:02:44.686
+Deep Research には時間がかかります。
+
+00:02:44.746 --> 00:02:46.766
+これは事前に実行した出力です。
+
+00:02:47.186 --> 00:02:50.646
+実際には、
+
+00:02:50.666 --> 00:02:54.586
+サブエージェントのチームを生成して、
+
+00:02:54.646 --> 00:02:58.386
+質問やプロンプトに対する深いインサイトを提供します。上部に同じ
+
+00:02:58.426 --> 00:03:02.276
+プロンプトがあり、下部でサブエージェントが生成されています。
+
+00:03:02.746 --> 00:03:05.966
+これが、あらゆるデータについて
+
+00:03:06.066 --> 00:03:07.156
+深いインサイトを得る方法です。
+
+00:03:08.566 --> 00:03:09.766
+あなたのデータについて。
+
+00:03:10.566 --> 00:03:10.746
+さて、
+
+00:03:12.066 --> 00:03:12.926
+これは本当に素晴らしいです。
+
+00:03:13.906 --> 00:03:15.746
+見てください。
+
+00:03:18.146 --> 00:03:20.366
+Christian が Cortex Sense に言及しました。
+
+00:03:20.946 --> 00:03:24.466
+最初のデモで San Francisco のエンゲージメントが
+
+00:03:24.606 --> 00:03:27.806
+下落しているのを見ました。San Francisco、
+
+00:03:28.326 --> 00:03:32.256
+もっと頑張ってください。そして Miami では
+
+00:03:32.286 --> 00:03:36.266
+VIP サージもありました。こう聞くことができます：
+
+00:03:36.366 --> 00:03:39.886
+「どの都市がファンエンゲージメントは強いが
+
+00:03:39.946 --> 00:03:43.686
+グッズ販売で低調だったか、
+
+00:03:43.746 --> 00:03:47.626
+直近四半期で？」CoWork は
+
+00:03:47.686 --> 00:03:51.006
+異なるアーティファクトを組み合わせて
+
+00:03:51.086 --> 00:03:54.676
+インサイトを提供します。それらが
+
+00:03:54.706 --> 00:03:56.106
+全く関係なくても。
+
+00:03:57.646 --> 00:04:01.226
+インサイトはこのようになります。すごいですよね？
+
+00:04:01.446 --> 00:04:02.206
+Cortex Sense です。
+
+00:04:03.486 --> 00:04:06.706
+締める前にもう一つ。
+
+00:04:07.246 --> 00:04:10.506
+これらのアーティファクトや
+
+00:04:10.586 --> 00:04:14.466
+CoWork での会話をチームメンバーに簡単に共有できます。
+
+00:04:14.966 --> 00:04:17.266
+このリンクをクリックするだけです。
+
+00:04:17.706 --> 00:04:21.106
+リンクが生成されます。「Slack でチームに
+
+00:04:21.906 --> 00:04:25.526
+共有してください」と言うだけです。
+
+00:04:26.466 --> 00:04:30.326
+ここで CoWork、MCP コネクタ、全てが
+
+00:04:30.386 --> 00:04:31.026
+連携します。
+
+00:04:31.826 --> 00:04:35.046
+少し時間がかかります。何が起きるか見てみましょう。
+
+00:04:36.086 --> 00:04:38.906
+他のインサイトを見に戻りましょう。
+
+00:04:39.066 --> 00:04:41.946
+「今日を始めましょう」の応答です。
+
+00:04:42.206 --> 00:04:45.386
+でも言ったように、これらは簡単に自動化できます。
+
+00:04:45.826 --> 00:04:49.106
+こちらに戻ります。ツールを使っています。
+
+00:04:49.226 --> 00:04:52.886
+クリックすると
+
+00:04:52.926 --> 00:04:56.746
+実際に何をしているか見えます。後で戻りますが、
+
+00:04:56.826 --> 00:04:58.946
+Christian に戻ってもらうためにまとめます。
+
+00:04:59.506 --> 00:05:03.086
+今お見せしたのは本当に3つの
+
+00:05:03.226 --> 00:05:06.886
+強力な機能です。日常業務に合わせて
+
+00:05:06.966 --> 00:05:10.786
+エージェントをパーソナライズ。
+
+00:05:10.846 --> 00:05:14.726
+アーティファクトの共有・コラボレーション、
+
+00:05:14.766 --> 00:05:18.186
+そして MCP コネクタです。Slack メッセージが送信されました。
+
+00:05:18.506 --> 00:05:21.646
+実際のメッセージをお見せします。
+
+00:05:23.366 --> 00:05:26.686
+こちらです。たった今配信されました。
+
+00:05:26.726 --> 00:05:30.486
+10:44。チームメンバーはここをクリックして
+
+00:05:30.906 --> 00:05:33.216
+共有されたアーティファクトを確認できます。
+
+00:05:33.966 --> 00:05:35.286
+ご清聴ありがとうございました。
+
+00:05:35.306 --> 00:05:35.616
+Maxに拍手を！
+
+00:05:35.666 --> 00:05:38.126
+素晴らしいSummitを。ありがとう、Christian。
+
+00:05:44.946 --> 00:05:45.926
+ここでは
+
+00:05:46.826 --> 00:05:50.626
+摩擦の排除と使いやすさについて話しました。これを約束します。
+
+00:05:50.636 --> 00:05:54.426
+信頼について話しました。皆にとって非常に重要です。
+
+00:05:54.506 --> 00:05:58.426
+オープンで相互運用可能であること、そして
+
+00:05:58.446 --> 00:06:02.006
+全員のためのコントロールプレーンについて。Sridhar が昨日
+
+00:06:02.066 --> 00:06:04.846
+エージェンティック・エンタープライズについて言ったこととつながります。
+
+00:06:05.066 --> 00:06:08.376
+私たちはデータを持ち、モデルを持ち、
+
+00:06:08.806 --> 00:06:12.626
+ソフトウェアとアプリケーションへの接続を支援し、そして CoCo
+
+00:06:12.666 --> 00:06:13.626
+と CoWork が
+
+00:06:14.486 --> 00:06:18.426
+コントロールプレーンです。CoCo と
+
+00:06:18.626 --> 00:06:22.286
+CoWork は組織の全員に
+
+00:06:22.466 --> 00:06:24.066
+届けるべきツールだと考えています。
+
+00:06:25.326 --> 00:06:26.906
+最後に一つの引用で締めくくります。
+
+00:06:28.406 --> 00:06:31.486
+「可能なことを再考する招待」です。
+
+00:06:31.546 --> 00:06:33.886
+私たちは今、違う時代にいます。
+
+00:06:34.826 --> 00:06:38.486
+Snowflake はあなたを
+
+00:06:38.626 --> 00:06:40.466
+「できるか？」から「すべきか？」の時代へ導きます。
+
+00:06:41.846 --> 00:06:45.726
+皆さんへのお願いは、
+
+00:06:45.766 --> 00:06:48.966
+何を達成したいかを夢見ること。Snowflake があれば
+
+00:06:49.825 --> 00:06:50.986
+実現できます。
+
+00:06:52.266 --> 00:06:54.406
+まさにこのように。
+`;
+            var VTT3_EN = `WEBVTT
+
+00:00:00.000 --> 00:00:00.282
+So for demo three,
+
+00:00:01.122 --> 00:00:04.582
+I'm going to be working smarter as a VP of
+
+00:00:04.762 --> 00:00:08.422
+sales using personal work agent that Christian
+
+00:00:08.522 --> 00:00:12.422
+just introduced. What you see here on my screen
+
+00:00:12.462 --> 00:00:15.062
+right now is basically CoWork.
+
+00:00:16.382 --> 00:00:16.662
+Okay?
+
+00:00:18.162 --> 00:00:22.082
+He also mentioned that there used to be an agent picker in
+
+00:00:22.142 --> 00:00:25.902
+Snowflake Intelligence. Snowflake CoWork takes that picker
+
+00:00:25.982 --> 00:00:28.911
+away because everything that's happening
+
+00:00:28.942 --> 00:00:31.522
+interaction-wise is actually personal to me.
+
+00:00:31.902 --> 00:00:35.342
+Here, I can start my day by saying, "Start my day.
+
+00:00:35.622 --> 00:00:39.601
+What do I need to know?" It's going to look at all the MCP connectors that
+
+00:00:39.702 --> 00:00:43.282
+I have, my email, my Slack messages, and what have you.
+
+00:00:43.762 --> 00:00:47.322
+It would also look at the current data in my
+
+00:00:47.782 --> 00:00:51.422
+account as a VP of sales and
+
+00:00:51.562 --> 00:00:55.262
+gives me information about the revenue, engagement, and what have
+
+00:00:56.462 --> 00:01:00.392
+you. Sorry. Now, I don't need to actually ask CoWork
+
+00:01:00.602 --> 00:01:04.422
+every single day the same prompt. That's where automations
+
+00:01:04.462 --> 00:01:07.032
+come into play. Let me show you what that looks
+
+00:01:07.082 --> 00:01:11.062
+like. So here, I've set up a daily brief that
+
+00:01:11.072 --> 00:01:14.062
+delivers an email in my inbox at six
+
+00:01:14.102 --> 00:01:17.932
+o'clock. I can actually show you the email that was sent
+
+00:01:18.002 --> 00:01:21.242
+this morning about, let's say, four hours ago.
+
+00:01:22.462 --> 00:01:26.362
+This is power of CoWork and automation working together.
+
+00:01:26.842 --> 00:01:27.442
+Pretty sweet.
+
+00:01:29.102 --> 00:01:30.442
+Okay. So
+
+00:01:31.382 --> 00:01:35.142
+the next thing I want to show you is how do you collaborate
+
+00:01:35.342 --> 00:01:39.222
+and share artifacts with different team members within your
+
+00:01:39.242 --> 00:01:42.322
+organization. So let me go back to CoWork.
+
+00:01:43.822 --> 00:01:47.122
+The third menu item on the left says Artifacts,
+
+00:01:47.742 --> 00:01:50.542
+and in the middle, it says Shared with me.
+
+00:01:50.722 --> 00:01:54.462
+These are the artifacts that other team members have shared
+
+00:01:54.842 --> 00:01:58.782
+with me. I can see them right here. Not just that, I
+
+00:01:58.842 --> 00:02:02.622
+can actually interact with these dashboards
+
+00:02:02.742 --> 00:02:04.762
+or artifacts, if you will. Now,
+
+00:02:05.702 --> 00:02:07.572
+we'll see that there was a Miami
+
+00:02:08.542 --> 00:02:12.362
+VIP surge, about 45%. I can go ahead and ask a
+
+00:02:12.402 --> 00:02:16.142
+follow-up question saying, "What is driving this VIP surge?
+
+00:02:16.242 --> 00:02:19.762
+We really need to know." I can extend this by
+
+00:02:19.822 --> 00:02:23.642
+enabling deep research. Now, this is going to give us a
+
+00:02:23.702 --> 00:02:26.622
+really deep insights into why this is occurring.
+
+00:02:27.022 --> 00:02:30.102
+You have the option to do this within
+
+00:02:30.162 --> 00:02:32.846
+CoWork.Okay. This is pretty neat.
+
+00:02:33.546 --> 00:02:35.026
+Coco is cooking right now, so
+
+00:02:36.086 --> 00:02:37.126
+we can clap. It's okay.
+
+00:02:38.446 --> 00:02:38.726
+Now,
+
+00:02:39.546 --> 00:02:41.566
+let me show you one more thing here.
+
+00:02:42.086 --> 00:02:44.686
+Now, deep research is going to take some time.
+
+00:02:44.746 --> 00:02:46.766
+This is the output that I've already run.
+
+00:02:47.186 --> 00:02:50.646
+What it actually does, it's going to create a team of
+
+00:02:50.666 --> 00:02:54.586
+sub-agents to give us deep insights into the questions or
+
+00:02:54.646 --> 00:02:58.386
+prompts that we have asked. You will see up here, it's the exact same
+
+00:02:58.426 --> 00:03:02.276
+prompt, and down below, you will see that there are sub-agents being spawned,
+
+00:03:02.746 --> 00:03:05.966
+and that's how we get deep insights into anything you'd
+
+00:03:06.066 --> 00:03:07.156
+like within
+
+00:03:08.566 --> 00:03:09.766
+your data.
+
+00:03:10.566 --> 00:03:10.746
+Now,
+
+00:03:12.066 --> 00:03:12.926
+this is pretty amazing.
+
+00:03:13.906 --> 00:03:15.746
+So check this out.
+
+00:03:18.146 --> 00:03:20.366
+Christian mentioned Cortex Sense.
+
+00:03:20.946 --> 00:03:24.466
+Now, earlier in my first demo, you saw that there was a drop in
+
+00:03:24.606 --> 00:03:27.806
+engagement in San Francisco. Come on, San Francisco, you got
+
+00:03:28.326 --> 00:03:32.256
+to bring it up a notch. But we also just saw that there
+
+00:03:32.286 --> 00:03:36.266
+is a VIP surge in Miami. What we can do is
+
+00:03:36.366 --> 00:03:39.886
+ask a generic question or generic prompt, "Which
+
+00:03:39.946 --> 00:03:43.686
+cities had strong fan engagement but underperformed on
+
+00:03:43.746 --> 00:03:47.626
+merchandise sales in the last quarter?" Now,
+
+00:03:47.686 --> 00:03:51.006
+what Cowork is going to do is basically take different
+
+00:03:51.086 --> 00:03:54.676
+artifacts, give us the insights, even though they're not
+
+00:03:54.706 --> 00:03:56.106
+related in any way.
+
+00:03:57.646 --> 00:04:01.226
+And this is what the insights look like. Okay? Pretty amazing.
+
+00:04:01.446 --> 00:04:02.206
+Cortex Sense.
+
+00:04:03.486 --> 00:04:06.706
+Now, one more thing before I wrap up.
+
+00:04:07.246 --> 00:04:10.506
+You can easily share these artifacts and
+
+00:04:10.586 --> 00:04:14.466
+conversations you're having within Cowork with your team members.
+
+00:04:14.966 --> 00:04:17.266
+All I have to do is basically click on this link.
+
+00:04:17.706 --> 00:04:21.106
+It's going to give us the link, and I can say, "Share
+
+00:04:21.906 --> 00:04:25.526
+this with the team on Slack."
+
+00:04:26.466 --> 00:04:30.326
+Now, this is where Cowork, MCP connectors, everything comes
+
+00:04:30.386 --> 00:04:31.026
+into play.
+
+00:04:31.826 --> 00:04:35.046
+Now, this can take some time. Let's see what happens.
+
+00:04:36.086 --> 00:04:38.906
+Okay. Let's go back and see other insights.
+
+00:04:39.066 --> 00:04:41.946
+This is my Start my day. Here's my response.
+
+00:04:42.206 --> 00:04:45.386
+But like I said, these things are really easily automated.
+
+00:04:45.826 --> 00:04:49.106
+Let's go back here. It's using the tool.
+
+00:04:49.226 --> 00:04:52.886
+I can click on this to actually see what exactly it
+
+00:04:52.926 --> 00:04:56.746
+is doing. Now, we will come back to this, but I want to wrap
+
+00:04:56.826 --> 00:04:58.946
+up so that Christian can come back on.
+
+00:04:59.506 --> 00:05:03.086
+What we saw right now is really three
+
+00:05:03.226 --> 00:05:06.886
+powerful things. Being able to personalize your
+
+00:05:06.966 --> 00:05:10.786
+agent for your daily use cases. We also
+
+00:05:10.846 --> 00:05:14.726
+saw sharing artifacts, collaboration, and also MCP
+
+00:05:14.766 --> 00:05:18.186
+connectors. Here you will see that the Slack message has been sent.
+
+00:05:18.506 --> 00:05:21.646
+I'm actually going to show you what that message would look like.
+
+00:05:23.366 --> 00:05:26.686
+And here we go. This was just delivered just now.
+
+00:05:26.726 --> 00:05:30.486
+10:44. Your team members can actually click on this
+
+00:05:30.906 --> 00:05:33.216
+and look at the artifacts that were shared.
+
+00:05:33.966 --> 00:05:35.286
+Thank you so much for your time.
+
+00:05:35.306 --> 00:05:35.616
+Give it up for Max!
+
+00:05:35.666 --> 00:05:38.126
+Have an awesome Summit. Thank you, Christian.
+
+00:05:44.946 --> 00:05:45.926
+So we talked about
+
+00:05:46.826 --> 00:05:50.626
+eliminating friction and ease of use. We're committed to that.
+
+00:05:50.636 --> 00:05:54.426
+We talked about trust, very important to all of us, talked
+
+00:05:54.506 --> 00:05:58.426
+about being open and interoperable, and we talked about a control plane for
+
+00:05:58.446 --> 00:06:02.006
+everyone. And now tying it to what Sridhar said
+
+00:06:02.066 --> 00:06:04.846
+yesterday about the agentic enterprise.
+
+00:06:05.066 --> 00:06:08.376
+We have the data, we have the models, we help you connect with
+
+00:06:08.806 --> 00:06:12.626
+software and applications, and then Coco
+
+00:06:12.666 --> 00:06:13.626
+and Cowork
+
+00:06:14.486 --> 00:06:18.426
+are the control planes. We think of Coco
+
+00:06:18.626 --> 00:06:22.286
+and Cowork as the tool that you need to get in front of
+
+00:06:22.466 --> 00:06:24.066
+everyone in your organization.
+
+00:06:25.326 --> 00:06:26.906
+Let me finish with one last quote,
+
+00:06:28.406 --> 00:06:31.486
+which is an invitation to rethink what is possible.
+
+00:06:31.546 --> 00:06:33.886
+We're in that age where it is different.
+
+00:06:34.826 --> 00:06:38.486
+Snowflake takes you from the era of
+
+00:06:38.626 --> 00:06:40.466
+can we to shall we?
+
+00:06:41.846 --> 00:06:45.726
+And my ask of all of you is to dream about what you
+
+00:06:45.766 --> 00:06:48.966
+want to accomplish. And with Snowflake,
+
+00:06:49.825 --> 00:06:50.986
+you can make it happen
+
+00:06:52.266 --> 00:06:54.406
+just like this.
+`
+            var subOffset3 = 0;
+            var steps3 = [
+              { from:0,   to:90,  num:'❶', label:'Start my day + Automations' },
+              { from:90,  to:210, num:'❷', label:'VIP Surge Artifact' },
+              { from:210, to:300, num:'❸', label:'Deep Research' },
+              { from:300, to:330, num:'❹', label:'Cortex Sense + Slack MCP' },
+            ];
+            function parseVTT3(vttText){
+              var cues=[];
+              var blocks=vttText.trim().split('\n\n');
+              blocks.forEach(function(b){
+                var lines=b.split('\n');
+                var ti=lines.findIndex(function(l){return l.includes('-->');});
+                if(ti<0) return;
+                var times=lines[ti].split('-->');
+                function toSec(s){
+                  var p=s.trim().split(':');
+                  if(p.length===3) return +p[0]*3600+ +p[1]*60+ +parseFloat(p[2]);
+                  return +p[0]*60+ +parseFloat(p[1]);
+                }
+                cues.push({start:toSec(times[0]),end:toSec(times[1]),text:lines.slice(ti+1).join(' ')});
+              });
+              return cues;
+            }
+            function makeBlobTrack3(vttText, lang, label){
+              var blob=new Blob([vttText],{type:'text/vtt'});
+              var url=URL.createObjectURL(blob);
+              var t=document.createElement('track');
+              t.kind='subtitles'; t.label=label; t.srclang=lang; t.src=url;
+              return t;
+            }
+            var parsedCues3 = { ja: parseVTT3(VTT3_JA), en: parseVTT3(VTT3_EN) };
+            var currentLang3 = 'ja';
+            function rebuildTrack3(lang){
+              var v=document.getElementById('demo3-video');
+              if(!v) return;
+              Array.from(v.querySelectorAll('track')).forEach(function(t){v.removeChild(t);});
+              if(lang==='off') return;
+              var vttSrc = lang==='ja' ? VTT3_JA : VTT3_EN;
+              var shiftedVtt = shiftVTT3(vttSrc, subOffset3);
+              var track = makeBlobTrack3(shiftedVtt, lang, lang==='ja'?'Japanese':'English');
+              track.default = true;
+              v.appendChild(track);
+              v.textTracks[0].mode='showing';
+            }
+            function shiftVTT3(vttText, offsetSec){
+              return vttText.replace(/(\d{2}:\d{2}:\d{2}\.\d{3}|\d{2}:\d{2}\.\d{3})/g, function(ts){
+                var p=ts.split(':');
+                var s;
+                if(p.length===3) s=+p[0]*3600+ +p[1]*60+ +parseFloat(p[2]);
+                else s=+p[0]*60+ +parseFloat(p[1]);
+                s=Math.max(0,s+offsetSec);
+                var h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;
+                return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+sec.toFixed(3).padStart(6,'0');
+              });
+            }
+            window.setDemo3Track = function(lang){
+              currentLang3 = lang;
+              ['ja','en','off'].forEach(function(l){
+                var btn=document.getElementById('btn3-'+l);
+                if(!btn) return;
+                if(l===lang){ btn.style.background='#29B5E8'; btn.style.color='#fff'; btn.style.borderColor='#29B5E8'; }
+                else { btn.style.background='transparent'; btn.style.color='#A8C0E0'; btn.style.borderColor='#555'; }
+              });
+              rebuildTrack3(lang);
+            };            var v3=document.getElementById('demo3-video');
+            var badge3=document.getElementById('demo3-step-badge');
+            if(v3){
+              v3.addEventListener('timeupdate',function(){
+                var t=v3.currentTime;
+                var active=null;
+                steps3.forEach(function(s){if(t>=s.from&&t<s.to) active=s;});
+                if(active){badge3.innerHTML=active.num+' <span style="font-size:10px;opacity:0.85">'+active.label+'</span>';badge3.style.display='block';}
+                else badge3.style.display='none';
+              });
+              v3.addEventListener('loadedmetadata',function(){ setDemo3Track('en'); });
+            }
+          })();
+          </script>
+          <ol class="demo-steps">
+            <li>"Start my day" → instantly generates a briefing integrating email, Slack, and sales data</li>
+            <li><strong>Automations</strong>: auto-deliver a daily brief by email every morning at 6am (pre-configured in demo)</li>
+            <li>Share a VIP surge +45% chart as an <strong>Artifact</strong> with teammates</li>
+            <li><strong>Deep Research</strong>: spawns sub-agents in parallel for deep-dive analysis. Automatically generates a detailed insights report</li>
+            <li><strong>Cortex Sense</strong>: extracts cross-cutting insights across multiple seemingly unrelated artifacts</li>
+            <li><strong>Slack MCP</strong>: send analysis results directly to Slack with one click</li>
+          </ol>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ACTION ITEMS -->
+<section class="actions-section">
+  <div class="container">
+    <div class="section-title">Actions You Can Take Now</div>
+    <p class="section-desc">Concrete steps your organization can take</p>
+    <div class="action-list">
+      <div class="action-item">
+        <span class="priority-badge priority-high">Now</span>
+        <span class="action-text">Install <strong>CoCo Desktop</strong> (now GA) and experience building and fixing pipelines in natural language. Available as CLI, Snowsight, or Desktop — choose what fits your workflow. Destructive operations always require user approval, so it's safe to explore</span>
+      </div>
+      <div class="action-item">
+        <span class="priority-badge priority-high">Now</span>
+        <span class="action-text">Deploy <strong>Snowflake CoWork</strong> (formerly Snowflake Intelligence) so everyone in your org has their own personal AI assistant. Personal Work Engine eliminates agent selection, and Cortex Sense automatically lifts accuracy from 24% → 83%</span>
+      </div>
+      <div class="action-item">
+        <span class="priority-badge priority-mid">Soon</span>
+        <span class="action-text">Establish governance before deploying AI to production. Combine <strong>Intent-driven Governance</strong> (policies via natural language), <strong>Agent Identity</strong>, and <strong>Data Movement Policy</strong> — following Thomson Reuters' model where "governance is an accelerant, not a constraint"</span>
+      </div>
+      <div class="action-item">
+        <span class="priority-badge priority-mid">Soon</span>
+        <span class="action-text">Evaluate zero-copy integrations with <strong>SAP, Workday, or Salesforce</strong>, or use <strong>Open Sharing</strong> (Iceberg REST) to serve data to non-Snowflake engines. Snowflake Managed Iceberg Storage is now GA on AWS and Azure — build a lock-in-free foundation</span>
+      </div>
+      <div class="action-item">
+        <span class="priority-badge priority-mid">Soon</span>
+        <span class="action-text">If you're using Kafka, evaluate the cost reduction potential of migrating to <strong>Snowflake Data Stream</strong> (Kafka Wire-compatible, fully managed, zero-copy, sub-second latency). Private Preview sign-ups are open</span>
+      </div>
+      <div class="action-item">
+        <span class="priority-badge priority-low">Explore</span>
+        <span class="action-text">Measure the impact of <strong>Adaptive Compute</strong> (GA, ~2x faster) and the <strong>Interactive Compiler</strong> (40x faster compilation → 3–4x workload acceleration) against your current query costs and latencies</span>
+      </div>
+      <div class="action-item">
+        <span class="priority-badge priority-low">Explore</span>
+        <span class="action-text">Following Samsung's <strong>AX (AI-based Process Transformation)</strong> model, identify existing workflows — report requests, approvals, data gathering — that CoWork can automate and redesign. A proven model with 1,000 executives already using it daily</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Snowflake Summit 2026 Day 2 Platform Keynote Summary ·
+  Created: June 2, 2026
+</footer>
+
+<!-- ===== Subtitle Editor Side Panel ===== -->
+<div id="sub-editor-overlay" style="display:none;position:fixed;top:0;right:0;width:28%;height:100vh;background:#111827;border-left:2px solid #29B5E8;z-index:9999;display:none;flex-direction:column;box-shadow:-8px 0 40px rgba(0,0,0,0.7);">
+
+  <!-- Header -->
+  <div style="padding:10px 12px;border-bottom:1px solid #1e2436;display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex-shrink:0;">
+    <span style="font-size:13px;font-weight:700;color:#fff;">✏️ Subtitle Editor</span>
+    <select id="sub-editor-lang" onchange="renderEditor()" style="font-size:11px;padding:3px 6px;border-radius:6px;background:#0d1117;color:#fff;border:1px solid #444;cursor:pointer;">
+      <option value="ja">🇯🇵 Japanese</option>
+      <option value="en">🇺🇸 English</option>
+    </select>
+    <span id="sub-editor-now" style="font-size:11px;color:#29B5E8;font-family:monospace;min-width:55px;">0:00.0</span>
+    <button onclick="closeSubEditor()" style="margin-left:auto;font-size:11px;padding:2px 10px;border-radius:6px;border:1px solid #555;background:transparent;color:#A8C0E0;cursor:pointer;">✕</button>
+  </div>
+
+  <!-- Description -->
+  <div style="padding:4px 12px;font-size:10px;color:#555;border-bottom:1px solid #1e2436;flex-shrink:0;">
+    ▶ Jump to cue   📍 Set to current time
+  </div>
+
+  <!-- Cue list -->
+  <div id="sub-editor-list" style="flex:1;overflow-y:auto;"></div>
+
+  <!-- Footer -->
+  <div style="padding:10px 16px;border-top:1px solid #1e2436;display:flex;gap:8px;align-items:center;flex-shrink:0;">
+    <span id="sub-editor-status" style="font-size:11px;color:#888;flex:1;"></span>
+    <button onclick="saveEditorMaster()" style="font-size:12px;padding:5px 16px;border-radius:10px;border:1px solid #00D4B1;background:rgba(0,212,177,0.15);color:#00D4B1;cursor:pointer;font-weight:700;">💾 Save to HTML</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  window.__editorCues = { ja: null, en: null };
+  var editorRafId = null;
+
+  function vttTimeToSec(ts){
+    var p=ts.trim().split(':');
+    return parseInt(p[0])*3600+parseInt(p[1])*60+parseFloat(p[2]);
+  }
+  function secToDisplay(s){
+    s=Math.max(0,s);
+    var m=Math.floor(s/60); s-=m*60;
+    var sec=Math.floor(s), ms=Math.round((s-sec)*1000);
+    return (m<10?'0':'')+m+':'+(sec<10?'0':'')+sec+'.'+(ms<100?(ms<10?'00':'0'):'')+ms;
+  }
+  function secToVttTime(s){
+    s=Math.max(0,s);
+    var h=Math.floor(s/3600);s-=h*3600;
+    var m=Math.floor(s/60);s-=m*60;
+    var sec=Math.floor(s),ms=Math.round((s-sec)*1000);
+    return (h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(sec<10?'0':'')+sec+'.'+(ms<100?(ms<10?'00':'0'):'')+ms;
+  }
+  function parseVTTLocal(text){
+    var cues=[],lines=text.split('\n'),i=0;
+    while(i<lines.length){
+      var l=lines[i].trim();
+      if(l.indexOf(' --> ')>-1){
+        var p=l.split(' --> ');
+        var st=vttTimeToSec(p[0]),en=vttTimeToSec(p[1]);
+        var txt=[]; i++;
+        while(i<lines.length&&lines[i].trim()!==''){txt.push(lines[i]);i++;}
+        cues.push({start:st,end:en,text:txt.join('\n')});
+      } else i++;
+    }
+    return cues;
+  }
+  function cuesToVTT(cues){
+    var out=['WEBVTT',''];
+    cues.forEach(function(c){
+      out.push(secToVttTime(c.start)+' --> '+secToVttTime(c.end));
+      out.push(c.text); out.push('');
+    });
+    return out.join('\n');
+  }
+
+  // Current time display loop
+  function startNowDisplay(){
+    var label=document.getElementById('sub-editor-now');
+    var v=document.getElementById('demo-video');
+    function tick(){
+      if(label&&v) label.textContent='▶ '+secToDisplay(v.currentTime);
+      editorRafId=requestAnimationFrame(tick);
+    }
+    tick();
+  }
+  function stopNowDisplay(){ if(editorRafId) cancelAnimationFrame(editorRafId); }
+
+  window.renderEditor = function(){
+    var lang=document.getElementById('sub-editor-lang').value;
+    var cues=window.__editorCues[lang];
+    var list=document.getElementById('sub-editor-list');
+    if(!cues){list.innerHTML='<p style="color:#888;padding:16px;">No data</p>';return;}
+    var html=cues.map(function(c,i){
+      var s=secToDisplay(c.start), e=secToDisplay(c.end);
+      var txt=c.text.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+      return '<div id="cue-row-'+i+'" style="padding:6px 8px;border-bottom:1px solid #1a2030;font-size:11px;'+(i%2?'background:#0d1117;':'background:#111827;')+'">'+
+        '<div style="display:flex;align-items:flex-start;gap:4px;margin-bottom:4px;">'+
+          '<span style="font-size:9px;color:#444;min-width:18px;padding-top:1px;">'+(i+1)+'</span>'+
+          '<div style="color:#e0e0e0;white-space:pre-wrap;line-height:1.4;flex:1;font-size:11px;">'+txt+'</div>'+
+        '</div>'+
+        '<div style="display:flex;align-items:center;gap:3px;padding-left:22px;flex-wrap:wrap;">'+
+          '<input value="'+s+'" onchange="updateCue(\''+lang+'\','+i+',\'start\',this.value)" '+
+            'style="width:80px;font-size:10px;font-family:monospace;background:#0d1117;color:#29B5E8;border:1px solid #2a3a50;border-radius:4px;padding:2px 4px;text-align:center;">'+
+          '<button onclick="setCueNow(\''+lang+'\','+i+',\'start\')" '+
+            'style="font-size:9px;padding:1px 5px;border-radius:4px;border:1px solid #FFB547;background:rgba(255,181,71,0.1);color:#FFB547;cursor:pointer;">📍</button>'+
+          '<span style="font-size:9px;color:#444;">〜</span>'+
+          '<input value="'+e+'" onchange="updateCue(\''+lang+'\','+i+',\'end\',this.value)" '+
+            'style="width:80px;font-size:10px;font-family:monospace;background:#0d1117;color:#A8C0E0;border:1px solid #2a3a50;border-radius:4px;padding:2px 4px;text-align:center;">'+
+          '<button onclick="setCueNow(\''+lang+'\','+i+',\'end\')" '+
+            'style="font-size:9px;padding:1px 5px;border-radius:4px;border:1px solid #FFB547;background:rgba(255,181,71,0.1);color:#FFB547;cursor:pointer;">📍</button>'+
+          '<button onclick="jumpToCue('+c.start+')" '+
+            'style="font-size:9px;padding:1px 5px;border-radius:4px;border:1px solid #444;background:transparent;color:#888;cursor:pointer;margin-left:2px;">▶</button>'+
+          '<button onclick="deleteCue(\''+lang+'\','+i+')" '+
+            'style="font-size:9px;padding:1px 5px;border-radius:4px;border:1px solid #ff4d4d;background:rgba(255,77,77,0.1);color:#ff4d4d;cursor:pointer;margin-left:2px;">🗑</button>'+
+        '</div>'+
+      '</div>';
+    }).join('');
+    list.innerHTML=html;
+    document.getElementById('sub-editor-status').textContent=
+      (lang==='ja'?'🇯🇵 Japanese':'🇺🇸 English')+' — '+cues.length+' cues';
+    // Auto-scroll to cue near playback position
+    highlightCurrentCue();
+  };
+
+  // Highlight cue at playback position
+  function highlightCurrentCue(){
+    var v=document.getElementById('demo-video');
+    if(!v) return;
+    var lang=document.getElementById('sub-editor-lang').value;
+    var cues=window.__editorCues[lang]; if(!cues) return;
+    var t=v.currentTime;
+    for(var i=0;i<cues.length;i++){
+      var row=document.getElementById('cue-row-'+i);
+      if(!row) continue;
+      if(t>=cues[i].start&&t<cues[i].end){
+        row.style.background='rgba(41,181,232,0.12)';
+        row.style.borderLeft='3px solid #29B5E8';
+      } else {
+        row.style.background=i%2?'#0d1117':'#111827';
+        row.style.borderLeft='none';
+      }
+    }
+  }
+
+  // Update highlight on timeupdate
+  document.addEventListener('DOMContentLoaded',function(){
+    var v=document.getElementById('demo-video');
+    if(v) v.addEventListener('timeupdate',function(){
+      if(document.getElementById('sub-editor-overlay').style.display!=='none') highlightCurrentCue();
+    });
+  });
+
+  window.updateCue = function(lang,i,field,val){
+    var parts=val.trim().split(':');
+    var sec= parts.length===2 ? parseInt(parts[0])*60+parseFloat(parts[1])
+                               : parseInt(parts[0])*3600+parseInt(parts[1])*60+parseFloat(parts[2]);
+    if(isNaN(sec)) return;
+    window.__editorCues[lang][i][field]=sec;
+    window.parsedCues[lang]=JSON.parse(JSON.stringify(window.__editorCues[lang]));
+    rebuildTrack(lang);
+    document.getElementById('sub-editor-status').textContent='✏️ Editing (unsaved)';
+  };
+
+  window.setCueNow = function(lang,i,field){
+    var v=document.getElementById('demo-video');
+    if(!v) return;
+    var sec=v.currentTime;
+    window.__editorCues[lang][i][field]=sec;
+    window.parsedCues[lang]=JSON.parse(JSON.stringify(window.__editorCues[lang]));
+    rebuildTrack(lang);
+    // Update input fields
+    renderEditor();
+    // Scroll to target row while preserving scroll position
+    var row=document.getElementById('cue-row-'+i);
+    if(row) row.scrollIntoView({block:'nearest'});
+    document.getElementById('sub-editor-status').textContent='📍 #'+(i+1)+' '+field+' → '+secToDisplay(sec)+' (unsaved)';
+  };
+
+  window.deleteCue = function(lang, i){
+    window.__editorCues[lang].splice(i, 1);
+    window.parsedCues[lang] = JSON.parse(JSON.stringify(window.__editorCues[lang]));
+    window.rebuildTrack(lang);
+    renderEditor();
+    document.getElementById('sub-editor-status').textContent = '🗑 #'+(i+1)+' deleted (unsaved)';
+  };
+
+  window.jumpToCue = function(sec){
+    var v=document.getElementById('demo-video');
+    if(v) v.currentTime=sec;
+  };
+
+  window.saveEditorMaster = function(){
+    var lang=document.getElementById('sub-editor-lang').value;
+    var vtt=cuesToVTT(window.__editorCues[lang]);
+    var btn=document.querySelector('#sub-editor-overlay [onclick="saveEditorMaster()"]');
+    btn.textContent='Saving...'; btn.disabled=true;
+    fetch('http://localhost:9879/save',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({lang:lang,vtt:vtt})
+    }).then(function(r){return r.json();}).then(function(){
+      btn.textContent='✅ Saved';
+      document.getElementById('sub-editor-status').textContent='✅ Written to HTML. Reload to confirm.';
+      setTimeout(function(){btn.textContent='💾 Save to HTML';btn.disabled=false;},3000);
+    }).catch(function(){
+      btn.textContent='⚠ Save failed'; btn.disabled=false;
+      setTimeout(function(){btn.textContent='💾 Save to HTML';},2000);
+    });
+  };
+})();
+</script>
+</body>
+</html>
