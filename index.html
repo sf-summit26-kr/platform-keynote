@@ -634,24 +634,24 @@
               <div class="role">EVP of Product — Snowflake</div>
             </div>
           </div>
-          <h3>Act 1: Ease of Use — Eliminating Friction (23:27–50:00)</h3>
+          <h3>Act 1: 사용 편의성 — 마찰 제거 (23:27–50:00)</h3>
           <img src="screenshots/platform/03_data_stream.jpg" alt="Snowflake Data Stream announcement" class="scene-capture">
-          <p class="scene-caption">Snowflake Data Stream announced — fully managed Kafka Wire-compatible streaming (~33:20)</p>
+          <p class="scene-caption">Snowflake Data Stream 발표 — 완전 관리형 Kafka Wire 호환 스트리밍 (~33:20)</p>
           <p style="font-size:13px; color:var(--sf-pink); font-weight:700; margin-bottom:12px;">"우리는 마찰 제거 사업을 하고 있습니다."</p>
           <ul class="point-list">
-            <li><strong>CoCo Desktop GA</strong>: desktop app delivering CLI-equivalent power through UI. Plan → Build → Deploy in one flow</li>
-            <li><strong>Cloud Agents (nearly GA)</strong>: sandboxes added to Snowsight and CLI. Scheduled execution, Async API, and Skill Catalog support</li>
-            <li><strong>Snap and Ask</strong>: snap any area of your screen and ask CoCo questions with full visual context</li>
-            <li><strong>Snowflake Data Stream</strong> (Private Preview coming soon): fully managed Kafka Wire-compatible streaming. Zero-copy, sub-second latency</li>
-            <li><strong>AIM (AI-powered Migrations)</strong>: Teradata virtualization support (run Teradata SQL as-is on Snowflake). Spark RDD → Snowflake at 5x performance improvement</li>
-            <li><strong>Cortex Function Studio</strong> (Public Preview): build, evaluate, and roll out custom AI functions on your own terms</li>
-            <li><strong>SpaceX's Grok model</strong> added to Cortex (Private Preview)</li>
-            <li><strong>Agentic Search</strong> (Public Preview): precise analytical queries on unstructured data — not RAG, but structured conversion → SQL answers</li>
-            <li><strong>Code Bundles</strong> (Public Preview): deploy and run Python files directly in Snowflake — no wrappers needed</li>
-            <li><strong>Cortex Training</strong>: fully managed fine-tuning and reinforcement learning experience</li>
-            <li><strong>Streaming Feature Serving GA</strong>: real-time feature delivery with tens-of-milliseconds latency</li>
-            <li><strong>Snowflake App Runtime</strong> (Public Preview): host full Node.js/React apps inside Snowflake. Single `snow app deploy` command</li>
-            <li><strong>Streamlit in Snowflake GA</strong>: workspace, Git integration, container execution. 1.7M monthly active developers</li>
+            <li><strong>CoCo Desktop GA</strong>: CLI 수준의 기능을 UI로 제공하는 데스크톱 앱. Plan → Build → Deploy를 하나의 흐름으로</li>
+            <li><strong>Cloud Agents (GA 임박)</strong>: Snowsight와 CLI에 샌드박스 추가. 예약 실행, Async API, Skill Catalog 지원</li>
+            <li><strong>Snap and Ask</strong>: 화면의 아무 영역이나 캡처해서 전체 시각적 컨텍스트와 함께 CoCo에게 질문</li>
+            <li><strong>Snowflake Data Stream</strong> (Private Preview 곧 출시): 완전 관리형 Kafka Wire 호환 스트리밍. 제로카피, 1초 미만 지연</li>
+            <li><strong>AIM (AI 기반 마이그레이션)</strong>: Teradata 가상화 지원 (Teradata SQL을 Snowflake에서 그대로 실행). Spark RDD → Snowflake 5배 성능 향상</li>
+            <li><strong>Cortex Function Studio</strong> (Public Preview): 맞춤형 AI 함수를 직접 구축, 평가, 배포</li>
+            <li><strong>SpaceX의 Grok 모델</strong>이 Cortex에 추가 (Private Preview)</li>
+            <li><strong>Agentic Search</strong> (Public Preview): 비정형 데이터에 대한 정밀 분석 쿼리 — RAG가 아닌 구조화 변환 → SQL 답변</li>
+            <li><strong>Code Bundles</strong> (Public Preview): Python 파일을 Snowflake에서 직접 배포 및 실행 — 래퍼 불필요</li>
+            <li><strong>Cortex Training</strong>: 완전 관리형 파인튜닝 및 강화학습 환경</li>
+            <li><strong>Streaming Feature Serving GA</strong>: 수십 밀리초 지연의 실시간 피처 제공</li>
+            <li><strong>Snowflake App Runtime</strong> (Public Preview): Snowflake 내에서 Node.js/React 앱 호스팅. `snow app deploy` 한 줄로 배포</li>
+            <li><strong>Streamlit in Snowflake GA</strong>: 워크스페이스, Git 연동, 컨테이너 실행. 월간 활성 개발자 170만 명</li>
           </ul>
           <h4 style="color:var(--sf-blue); font-size:14px; margin:16px 0 10px;">Demo 1: Snow Music (Dash Desai)</h4>
           <span class="video-timestamp-badge">🎬 CoCo Desktop Demo &nbsp;44:08〜49:51 · ~6 min</span>
@@ -1416,12 +1416,12 @@ Back to you, Christian.
             video.addEventListener('ended', function(){ badge.style.display='none'; });
           })();
           </script>
-          <p class="scene-caption">Recorded clip with audio — CoCo Desktop diagnosing and fixing a live streaming app pipeline failure using natural language</p>
+          <p class="scene-caption">음성 포함 녹화 — CoCo Desktop이 자연어로 라이브 스트리밍 앱 파이프라인 장애를 진단하고 수정</p>
           <ol class="demo-steps">
-            <li><strong>CoCo Desktop</strong> diagnoses a live streaming app failure using natural language (identifies missing device_type column)</li>
-            <li>Data sources: <strong>Snowflake Data Stream</strong> + <strong>Iceberg table</strong> + <strong>Salesforce zero-copy connector</strong></li>
-            <li>Destructive commands require user approval — AI that doesn't act unilaterally</li>
-            <li><strong>Snap and Ask</strong>: select the engagement chart, ask "why did this drop?" — and get a detailed answer</li>
+            <li><strong>CoCo Desktop</strong>이 자연어로 라이브 스트리밍 앱 장애를 진단 (누락된 device_type 컬럼 식별)</li>
+            <li>데이터 소스: <strong>Snowflake Data Stream</strong> + <strong>Iceberg 테이블</strong> + <strong>Salesforce 제로카피 커넥터</strong></li>
+            <li>파괴적 명령은 사용자 승인 필요 — 독단적으로 행동하지 않는 AI</li>
+            <li><strong>Snap and Ask</strong>: 인게이지먼트 차트를 선택, "왜 떨어졌지?" 질문 → 상세 답변 제공</li>
           </ol>
         </div>
       </div>
@@ -1437,23 +1437,23 @@ Back to you, Christian.
               <div class="role">EVP of Product — Snowflake</div>
             </div>
           </div>
-          <h3>Act 2: Trust — Governance &amp; Security (50:00–1:14:15)</h3>
+          <h3>Act 2: 신뢰 — 거버넌스 & 보안 (50:00–1:14:15)</h3>
           <img src="screenshots/platform/07_interactive_compiler.jpg" alt="Interactive Compiler 40x faster" class="scene-capture">
-          <p class="scene-caption">Interactive Compiler announced — "40X FASTER" compile times shown on stage (~1:05:27)</p>
+          <p class="scene-caption">Interactive Compiler 발표 — "40배 빠른" 컴파일 시간을 무대에서 시연 (~1:05:27)</p>
           <ul class="point-list">
-            <li><strong>Intent-driven Governance</strong>: just say "protect all PII" — automatic classification, policy generation, and ongoing governance kick in (powered by CoCo/AI)</li>
-            <li><strong>Horizon AI Guardrails</strong> (existing + zero-day): defends CoCo/CoWork against jailbreaks and prompt injection at runtime</li>
-            <li><strong>Agent Identity</strong>: new context function to detect the agent execution context. Referenceable from masking policies and row access policies</li>
-            <li><strong>Data Movement Policies</strong>: blocks tagged data from being transferred to external stages or downloaded via Snowsight</li>
-            <li><strong>Multi-party Approvals</strong> (Private Preview): high-risk operations require 2-person approval. Even a solo admin cannot disable MFA unilaterally</li>
-            <li><strong>Trust Center AI Security Checks</strong> (Public Preview): scans agent and AI configurations against best practices</li>
-            <li><strong>Horizon Context (NEW)</strong>: automatically feeds semantic signals to CoCo/CoWork/Cortex agents. Integrates Semantic Views and external metadata connectors</li>
-            <li><strong>Adaptive Compute GA</strong>: ~2x faster vs. Gen1, currently rolling out</li>
-            <li><strong>Interactive Compiler</strong> (NEW): new query compiler delivers <strong>40x faster compilation</strong> → 3–4x workload acceleration</li>
-            <li><strong>Unistore 8x optimization</strong> (Public Preview): dramatically improved latency and throughput. Hybrid Table users should re-evaluate</li>
-            <li><strong>Next-gen account replication</strong>: <strong>20x faster</strong>, with guaranteed RPO SLA for stronger business continuity</li>
-            <li><strong>AI Cost Governance</strong>: integrates AI usage into Budget. Per-user quotas, Budget custom actions (trigger Stored Procedures at thresholds)</li>
-            <li><strong>Observe acquisition completed</strong>: natively integrates logs, APM, and infrastructure monitoring into Snowflake. CoCo CLI + Iceberg compatible</li>
+            <li><strong>Intent-driven Governance</strong>: "모든 PII를 보호해"라고 말하면 — 자동 분류, 정책 생성, 지속적 거버넌스가 작동 (CoCo/AI 기반)</li>
+            <li><strong>Horizon AI Guardrails</strong> (기존 + 제로데이): 런타임에서 CoCo/CoWork를 탈옥 및 프롬프트 인젝션으로부터 방어</li>
+            <li><strong>Agent Identity</strong>: 에이전트 실행 컨텍스트를 감지하는 새로운 컨텍스트 함수. 마스킹 정책 및 행 접근 정책에서 참조 가능</li>
+            <li><strong>Data Movement Policies</strong>: 태그된 데이터가 외부 스테이지로 전송되거나 Snowsight를 통해 다운로드되는 것을 차단</li>
+            <li><strong>Multi-party Approvals</strong> (Private Preview): 고위험 작업에 2인 승인 필요. 단독 관리자도 MFA를 일방적으로 비활성화 불가</li>
+            <li><strong>Trust Center AI Security Checks</strong> (Public Preview): 에이전트 및 AI 구성을 모범 사례 대비 스캔</li>
+            <li><strong>Horizon Context (NEW)</strong>: 시맨틱 신호를 CoCo/CoWork/Cortex 에이전트에 자동 제공. Semantic Views 및 외부 메타데이터 커넥터 통합</li>
+            <li><strong>Adaptive Compute GA</strong>: Gen1 대비 ~2배 빠름, 현재 롤아웃 중</li>
+            <li><strong>Interactive Compiler</strong> (NEW): 새 쿼리 컴파일러가 <strong>40배 빠른 컴파일</strong> → 3~4배 워크로드 가속 제공</li>
+            <li><strong>Unistore 8x 최적화</strong> (Public Preview): 지연 시간과 처리량 극적 향상. Hybrid Table 사용자는 재평가 필요</li>
+            <li><strong>차세대 계정 복제</strong>: <strong>20배 빠름</strong>, 보장된 RPO SLA로 더 강력한 비즈니스 연속성</li>
+            <li><strong>AI Cost Governance</strong>: AI 사용량을 Budget에 통합. 사용자별 쿼터, Budget 커스텀 액션 (임계값에서 Stored Procedure 트리거)</li>
+            <li><strong>Observe 인수 완료</strong>: 로그, APM, 인프라 모니터링을 Snowflake에 네이티브 통합. CoCo CLI + Iceberg 호환</li>
           </ul>
           <img src="screenshots/platform/05_caitlin_thomson_reuters.jpg" alt="Caitlin Hugerty Thomson Reuters" class="scene-capture">
           <p class="scene-caption">Caitlin Hugerty (Thomson Reuters) × Christian Kleinerman — fireside chat on stage (~56:54)</p>
@@ -1466,10 +1466,10 @@ Back to you, Christian.
               </div>
             </div>
             <ul class="point-list">
-              <li><strong>CoCounsel</strong>: flagship AI for legal, tax, and audit professionals. Used by <strong>over 1 million</strong> professionals in daily work</li>
-              <li><strong>Semantic Intelligence</strong>: 1,500+ internal users rely on it for the most critical financial and business decisions</li>
-              <li>Integrates Reuters news, commodity, HR, and other structured and unstructured data with governance — running AI products at production scale</li>
-              <li>Not pilots — <strong>production operations</strong>: finance-validated metrics embedded in key workflows</li>
+              <li><strong>CoCounsel</strong>: 법률, 세무, 감사 전문가를 위한 핵심 AI. <strong>100만 명 이상</strong>의 전문가가 일상 업무에서 사용</li>
+              <li><strong>Semantic Intelligence</strong>: 1,500명 이상의 내부 사용자가 가장 중요한 재무 및 비즈니스 결정에 활용</li>
+              <li>Reuters 뉴스, 상품, HR 및 기타 정형/비정형 데이터를 거버넌스와 함께 통합 — AI 제품을 프로덕션 규모로 운영</li>
+              <li>파일럿이 아닌 <strong>프로덕션 운영</strong>: 재무 검증된 메트릭이 핵심 워크플로우에 내장</li>
             </ul>
             <div class="highlight-quote" style="margin-top:14px;">
               "Governance is an enabler, not a constraint — it de-risks and accelerates our AI transformation."
@@ -1514,11 +1514,11 @@ Back to you, Christian.
                 background:transparent;color:#A8C0E0;cursor:pointer;font-weight:600;">✕ OFF</button>
             </div>
           </div>
-          <p class="scene-caption" style="margin-top:8px;">Recorded clip with audio — CoWork demonstrating governance through masking policies, data movement policies, and Trust Center</p>
+          <p class="scene-caption" style="margin-top:8px;">음성 포함 녹화 — CoWork가 마스킹 정책, 데이터 이동 정책, Trust Center를 통해 거버넌스를 시연</p>
           <ol class="demo-steps">
-            <li>Request VIP contact info via CoWork → <strong>masking policy</strong> fires, values are hidden</li>
-            <li>Attempt to export data to an external stage → <strong>Data Movement Policy</strong> blocks it (real failure on stage)</li>
-            <li><strong>Trust Center</strong>: unified view of AI guardrails, data security, and DMP violations</li>
+            <li>CoWork로 VIP 연락처 정보 요청 → <strong>마스킹 정책</strong> 발동, 값이 숨겨짐</li>
+            <li>외부 스테이지로 데이터 내보내기 시도 → <strong>Data Movement Policy</strong>가 차단 (무대에서 실제 실패 시연)</li>
+            <li><strong>Trust Center</strong>: AI 가드레일, 데이터 보안, DMP 위반의 통합 뷰</li>
           </ol>
           <script>
           (function(){
@@ -2140,20 +2140,20 @@ Thank you, Dash.
               <div class="role">EVP of Product — Snowflake</div>
             </div>
           </div>
-          <h3>Act 3: Open &amp; Interoperable — A World Without Silos (1:14:15–1:28:15)</h3>
+          <h3>Act 3: 개방 & 상호운용 — 사일로 없는 세계 (1:14:15–1:28:15)</h3>
           <img src="screenshots/platform/12_christian_act3_b.jpg" alt="Christian Kleinerman Act3 Open Interoperable" class="scene-capture">
           <p class="scene-caption">Open &amp; Interoperable section — Iceberg V3, SAP GA, Open Sharing, and more (~1:15:30)</p>
           <ul class="point-list">
-            <li><strong>Apache Iceberg V3</strong>: broadest implementation. Participating in V4 spec development. Full bidirectional catalog interoperability (Snowflake Horizon ↔ external catalogs)</li>
-            <li><strong>Snowflake Managed Iceberg Storage GA</strong> (AWS + Azure, GCP coming soon): no vendor lock-in</li>
-            <li><strong>Apache Polaris</strong> Iceberg REST catalog integrated into Horizon catalog</li>
-            <li><strong>Open Semantic Interchange</strong>: founded by Snowflake to drive open standardization of semantic layers</li>
-            <li><strong>Data Re-sharing GA</strong>: freely re-share data you've received with other third parties</li>
-            <li><strong>Open Sharing</strong> (Public Preview): share data with non-Snowflake users via Iceberg REST</li>
-            <li><strong>Multi-party Collaboration GA</strong>: multiple organizations collaborate in a single secure environment. Netflix is an early adopter</li>
-            <li><strong>SAP zero-copy integration GA</strong> (the most requested partner integration)</li>
-            <li><strong>Additional zero-copy</strong>: Workday Data Cloud, IBM Watsonx Data (DB2/mainframe), AVEVA Connect (industrial data)</li>
-            <li><strong>Cross-query from CoWork</strong>: apply Snowflake AI directly to external data in Redshift, Postgres, and more</li>
+            <li><strong>Apache Iceberg V3</strong>: 가장 광범위한 구현. V4 스펙 개발 참여. 완전한 양방향 카탈로그 상호운용 (Snowflake Horizon ↔ 외부 카탈로그)</li>
+            <li><strong>Snowflake Managed Iceberg Storage GA</strong> (AWS + Azure, GCP 곧 출시): 벤더 종속 없음</li>
+            <li><strong>Apache Polaris</strong> Iceberg REST 카탈로그가 Horizon 카탈로그에 통합</li>
+            <li><strong>Open Semantic Interchange</strong>: 시맨틱 레이어의 개방형 표준화를 위해 Snowflake가 설립</li>
+            <li><strong>Data Re-sharing GA</strong>: 받은 데이터를 다른 제3자와 자유롭게 재공유</li>
+            <li><strong>Open Sharing</strong> (Public Preview): Iceberg REST로 비-Snowflake 사용자와 데이터 공유</li>
+            <li><strong>Multi-party Collaboration GA</strong>: 여러 조직이 단일 보안 환경에서 협업. Netflix가 초기 도입 기업</li>
+            <li><strong>SAP 제로카피 통합 GA</strong> (가장 많이 요청된 파트너 통합)</li>
+            <li><strong>추가 제로카피</strong>: Workday Data Cloud, IBM Watsonx Data (DB2/메인프레임), AVEVA Connect (산업 데이터)</li>
+            <li><strong>CoWork에서 크로스 쿼리</strong>: Redshift, Postgres 등 외부 데이터에 Snowflake AI를 직접 적용</li>
           </ul>
               <div style="display:flex;gap:10px;margin-top:12px;">
                 <div style="flex:1;background:rgba(245,158,11,0.12);border-top:3px solid #F59E0B;border-radius:8px;padding:12px 14px;">
@@ -2176,9 +2176,9 @@ Thank you, Dash.
             <img src="screenshots/platform/08_patrick_under_armour.jpg" alt="Patrick Deroso Under Armour CDAO" class="scene-capture" style="margin:12px 0 6px;">
             <p class="scene-caption">Patrick Deroso (Under Armour CDAO) — takes the stage in a UA jacket, sharing the 7-year Snowflake partnership and their AI Transformation journey (~1:27:00)</p>
             <ul class="point-list">
-              <li>7-year Snowflake partnership. <strong>Chose Snowflake as a "monument"</strong> — no lock-in, infinitely scalable</li>
-              <li>Internal agent <strong>"Ada"</strong>: every team member can query data in natural language</li>
-              <li>Built <strong>AX (AI-based Process Transformation)</strong> with Elementum (Snowflake partner). Redesigning workflows themselves, not just optimizing them</li>
+              <li>7년간의 Snowflake 파트너십. <strong>Snowflake를 "모뉴먼트"로 선택</strong> — 종속 없음, 무한 확장 가능</li>
+              <li>내부 에이전트 <strong>"Ada"</strong>: 모든 팀원이 자연어로 데이터 조회 가능</li>
+              <li>Elementum(Snowflake 파트너)과 <strong>AX(AI 기반 프로세스 전환)</strong> 구축. 워크플로우를 최적화가 아닌 재설계</li>
             </ul>
             <div class="highlight-quote" style="margin-top:14px;">
               "The key thing with the interoperability is our business partners have applications that they want to bring and engage with that data at an enterprise level."
@@ -2199,7 +2199,7 @@ Thank you, Dash.
               <div class="role">EVP of Product — Snowflake</div>
             </div>
           </div>
-          <h3>Act 4: CoWork for Everyone — The Control Plane for All (1:28:15–1:47:15)</h3>
+          <h3>Act 4: 모두를 위한 CoWork — 모든 사람의 컨트롤 플레인 (1:28:15–1:47:15)</h3>
           <p style="font-size:13px; color:#A8C0E0; margin-bottom:14px;">IT era (request a report → wait days) → BI era (data democratization) → Today: the <strong>"ubiquitous intelligence" era</strong>. Everyone has the power of a data scientist.</p>
           <div class="customer-card">
             <div class="customer-header">
@@ -2212,9 +2212,9 @@ Thank you, Dash.
             <img src="screenshots/platform/09_jung_soo_samsung.jpg" alt="Jung Suh Samsung" class="scene-capture" style="margin:12px 0 6px;">
             <p class="scene-caption">Jung Suh (Samsung Electronics, VP Digital Commerce) — SIA agent and AX model enabling 1,000 executives to use data daily (~1:32:20)</p>
             <ul class="point-list">
-              <li>Ran <strong>SIA (Shopper's Insight Action Agent)</strong> during the Galaxy S26 flagship launch. Team workflows: <strong>hours → seconds</strong></li>
-              <li><strong>AX (AI-based Process Transformation)</strong>: AI sits at the center of the process, continuously monitors signals → auto-suggests and routes actions</li>
-              <li><strong>1,000 executives, sales, and marketing staff</strong> using agents daily — none of them are data scientists</li>
+              <li>Galaxy S26 플래그십 출시 시 <strong>SIA(Shopper's Insight Action Agent)</strong> 운영. 팀 워크플로우: <strong>수 시간 → 수 초</strong></li>
+              <li><strong>AX(AI 기반 프로세스 전환)</strong>: AI가 프로세스 중심에 위치, 신호를 지속 모니터링 → 자동 제안 및 행동 라우팅</li>
+              <li><strong>1,000명의 임원, 영업, 마케팅 직원</strong>이 매일 에이전트 사용 — 데이터 과학자는 한 명도 없음</li>
             </ul>
             <div class="highlight-quote" style="margin-top:14px;">
               "That shift from the data team as a bottleneck to every leader as their own analyst operating in an AX model — that's the transformation we came to Snowflake for."
@@ -2224,12 +2224,12 @@ Thank you, Dash.
           <img src="screenshots/platform/11_christian_cowork.jpg" alt="Christian Kleinerman announces new CoWork features" class="scene-capture">
           <p class="scene-caption">Christian Kleinerman (Snowflake EVP of Product) — announces new CoWork features following the Samsung case study (~1:37:50)</p>
           <ul class="point-list">
-            <li><strong>Personal Work Engine</strong>: no more agent picker. Your personal agent orchestrates multi-agent workflows in the context of your specific role and work</li>
-            <li><strong>User Memory</strong>: learns and remembers your usage patterns and preferences, continuously improving future response quality</li>
-            <li><strong>Scheduled Tasks in CoWork</strong>: "email me this analysis every Monday at 6am" — set in natural language</li>
-            <li><strong>Next-gen Artifacts</strong>: governed dashboards connected to live data. Build with CoCo → publish and share via CoWork</li>
-            <li><strong>Cortex Sense (NEW)</strong>: automatically improves agent accuracy at runtime by collecting signals and enriching context. Accuracy: <strong>24% → 83%</strong> (on coding agent evaluation set)</li>
-            <li><strong>Natoma acquisition</strong>: connects CoCo/CoWork to <strong>100+ business systems</strong> via MCP</li>
+            <li><strong>Personal Work Engine</strong>: 에이전트 선택기 불필요. 개인 에이전트가 역할과 업무 맥락에서 멀티 에이전트 워크플로우를 오케스트레이션</li>
+            <li><strong>User Memory</strong>: 사용 패턴과 선호도를 학습·기억하여 미래 응답 품질을 지속적으로 향상</li>
+            <li><strong>CoWork 예약 작업</strong>: "매주 월요일 오전 6시에 이 분석을 이메일로 보내줘" — 자연어로 설정</li>
+            <li><strong>차세대 Artifacts</strong>: 라이브 데이터에 연결된 거버넌스 대시보드. CoCo로 빌드 → CoWork로 게시 및 공유</li>
+            <li><strong>Cortex Sense (NEW)</strong>: 신호를 수집하고 컨텍스트를 풍부하게 하여 런타임에서 에이전트 정확도 자동 향상. 정확도: <strong>24% → 83%</strong> (코딩 에이전트 평가 세트 기준)</li>
+            <li><strong>Natoma 인수</strong>: MCP를 통해 CoCo/CoWork를 <strong>100개 이상의 비즈니스 시스템</strong>에 연결</li>
           </ul>
           <img src="screenshots/platform/10_cortex_sense.jpg" alt="Cortex Sense announcement" class="scene-capture">
           <p class="scene-caption">Cortex Sense announced — runtime auto-enhancement improving agent accuracy from 24% → 83% (~1:40:25)</p>
@@ -3084,12 +3084,12 @@ just like this.
           })();
           </script>
           <ol class="demo-steps">
-            <li>"Start my day" → instantly generates a briefing integrating email, Slack, and sales data</li>
-            <li><strong>Automations</strong>: auto-deliver a daily brief by email every morning at 6am (pre-configured in demo)</li>
-            <li>Share a VIP surge +45% chart as an <strong>Artifact</strong> with teammates</li>
-            <li><strong>Deep Research</strong>: spawns sub-agents in parallel for deep-dive analysis. Automatically generates a detailed insights report</li>
-            <li><strong>Cortex Sense</strong>: extracts cross-cutting insights across multiple seemingly unrelated artifacts</li>
-            <li><strong>Slack MCP</strong>: send analysis results directly to Slack with one click</li>
+            <li>"하루 시작" → 이메일, Slack, 영업 데이터를 통합한 브리핑 즉시 생성</li>
+            <li><strong>자동화</strong>: 매일 오전 6시 이메일로 데일리 브리프 자동 전송 (데모에서 사전 설정)</li>
+            <li>VIP 급증 +45% 차트를 <strong>Artifact</strong>로 팀원과 공유</li>
+            <li><strong>Deep Research</strong>: 서브 에이전트를 병렬로 생성하여 심층 분석. 상세 인사이트 리포트 자동 생성</li>
+            <li><strong>Cortex Sense</strong>: 관련 없어 보이는 여러 아티팩트에서 교차 인사이트 추출</li>
+            <li><strong>Slack MCP</strong>: 분석 결과를 한 번의 클릭으로 Slack에 직접 전송</li>
           </ol>
         </div>
       </div>
@@ -3103,35 +3103,35 @@ just like this.
 <!-- ACTION ITEMS -->
 <section class="actions-section">
   <div class="container">
-    <div class="section-title">Actions You Can Take Now</div>
-    <p class="section-desc">Concrete steps your organization can take</p>
+    <div class="section-title">지금 시작할 수 있는 액션</div>
+    <p class="section-desc">여러분의 조직이 취할 수 있는 구체적 단계</p>
     <div class="action-list">
       <div class="action-item">
-        <span class="priority-badge priority-high">Now</span>
+        <span class="priority-badge priority-high">지금</span>
         <span class="action-text">Install <strong>CoCo Desktop</strong> (now GA) and experience building and fixing pipelines in natural language. Available as CLI, Snowsight, or Desktop — choose what fits your workflow. Destructive operations always require user approval, so it's safe to explore</span>
       </div>
       <div class="action-item">
-        <span class="priority-badge priority-high">Now</span>
+        <span class="priority-badge priority-high">지금</span>
         <span class="action-text">Deploy <strong>Snowflake CoWork</strong> (formerly Snowflake Intelligence) so everyone in your org has their own personal AI assistant. Personal Work Engine eliminates agent selection, and Cortex Sense automatically lifts accuracy from 24% → 83%</span>
       </div>
       <div class="action-item">
-        <span class="priority-badge priority-mid">Soon</span>
+        <span class="priority-badge priority-mid">가까운 시일 내</span>
         <span class="action-text">Establish governance before deploying AI to production. Combine <strong>Intent-driven Governance</strong> (policies via natural language), <strong>Agent Identity</strong>, and <strong>Data Movement Policy</strong> — following Thomson Reuters' model where "governance is an accelerant, not a constraint"</span>
       </div>
       <div class="action-item">
-        <span class="priority-badge priority-mid">Soon</span>
+        <span class="priority-badge priority-mid">가까운 시일 내</span>
         <span class="action-text">Evaluate zero-copy integrations with <strong>SAP, Workday, or Salesforce</strong>, or use <strong>Open Sharing</strong> (Iceberg REST) to serve data to non-Snowflake engines. Snowflake Managed Iceberg Storage is now GA on AWS and Azure — build a lock-in-free foundation</span>
       </div>
       <div class="action-item">
-        <span class="priority-badge priority-mid">Soon</span>
+        <span class="priority-badge priority-mid">가까운 시일 내</span>
         <span class="action-text">If you're using Kafka, evaluate the cost reduction potential of migrating to <strong>Snowflake Data Stream</strong> (Kafka Wire-compatible, fully managed, zero-copy, sub-second latency). Private Preview sign-ups are open</span>
       </div>
       <div class="action-item">
-        <span class="priority-badge priority-low">Explore</span>
+        <span class="priority-badge priority-low">검토</span>
         <span class="action-text">Measure the impact of <strong>Adaptive Compute</strong> (GA, ~2x faster) and the <strong>Interactive Compiler</strong> (40x faster compilation → 3–4x workload acceleration) against your current query costs and latencies</span>
       </div>
       <div class="action-item">
-        <span class="priority-badge priority-low">Explore</span>
+        <span class="priority-badge priority-low">검토</span>
         <span class="action-text">Following Samsung's <strong>AX (AI-based Process Transformation)</strong> model, identify existing workflows — report requests, approvals, data gathering — that CoWork can automate and redesign. A proven model with 1,000 executives already using it daily</span>
       </div>
     </div>
